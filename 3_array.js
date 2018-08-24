@@ -164,5 +164,56 @@ var words = ["the ","quick ","brown ","fox "];
 var sentence = words.reduce(concat);
 console.log(sentence);
 
+//reduceRigt从右到左执行
 var sentence2 = words.reduceRight(concat);
 console.log(sentence2);
+
+//map() and filter
+function curve(grade) {
+    return grade+=5;
+}
+//map ,对每个元素使用某个函数，map()返回一个新的数组
+var grades = [77,65,81,92,83];
+var newgrades = grades.map(curve);
+console.log(newgrades);
+function first1(word) {
+    return word[0];
+}
+var words = ["for","your","information"];
+var acronm = words.map(first1);
+console.log(acronm.join(""));
+console.log(acronm.toString());
+
+//filter()根据过滤函数，返回一个布尔型参数的数组，very esay
+ function isEven(num) {
+     return num%2==0;
+ }
+
+ function isOdd(num) {
+     return num %2 !=0;
+ }
+
+ var nums = [];
+ for (var i=0;i<20;++i){
+     nums[i] = i+1
+ }
+ var evens = nums.filter(isEven);
+ console.log("Even numbers:");
+ console.log(evens);
+ var odds = nums.filter(isOdd);
+ console.log("Odd numbers");
+ console.log(odds);
+
+ function passing(num) {
+     return num>=60
+ }
+ var grades = [];
+ for (var i=0;i<20;++i){
+     grades[i] = Math.floor(Math.random()*101);
+ }
+ var passGrades = grades.filter(passing);
+ console.log("all grades:");
+ console.log(grades);
+ console.log("Pass grades");
+ console.log(passGrades);
+
