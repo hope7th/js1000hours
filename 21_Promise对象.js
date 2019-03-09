@@ -40,7 +40,6 @@ function loadImageAsync(url) {
         image.onerror = function () {
             reject(new Error('Could not load image at'+url))
         }
-
         image.src = url
     })
 }
