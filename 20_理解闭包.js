@@ -22,3 +22,4 @@ console.log(index1);
 console.log(c.length());
 console.log(c.getItem(index1));
 //js一切都是对象
+
