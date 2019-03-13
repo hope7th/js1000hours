@@ -1,3 +1,5 @@
+'use unstrict'
+
 function foo(num){
     console.log("foo:"+num);
     this.count++;
@@ -75,5 +77,27 @@ function test4() {
 var o = {}
 o.x = 1;
 o.m = test4();
-o.m.apply();
-o.m.apply(0);
+// o.m.apply();
+// o.m.apply(0);
+
+//this 指向一个对象
+//this 并不指这个函数本身
+function foo() {
+    console.log('---')
+    console.log(this.bar)
+}
+
+var bar = "global"
+var obj1 = {
+    bar : "obj1",
+    foo:foo
+}
+var obj2 = {
+    bar:"obj2"
+}
+
+foo();//在非严格模式下，foo() 最后会将 this 设置为全局对象
+obj1.foo();//将 this 设置为对象 obj1
+foo.call(obj2);//将 this 设置为对象 obj2
+new foo()//将 this 设置为一个全新的空对象
+

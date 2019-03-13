@@ -53,5 +53,8 @@ function User() {
 
 var fred = User();
 fred.login('fred','12312312');
+//函数执行后，保留对变量的记忆，就叫闭包
 //内层的函数 doLogin() 在 username 和 password 上有一个闭包，这意味着即使在 User() 函 数运行完毕之后，函数 doLogin() 也保持着对它们的访问权。
+//私有变量，外部不可访问，提供外部访问的api,就叫闭包
+
 
