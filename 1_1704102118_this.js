@@ -76,13 +76,13 @@ function test4() {
 }
 var o = {}
 o.x = 1;
-o.m = test4();
-// o.m.apply();
-// o.m.apply(0);
+o.m = test4;
+o.m.apply();
+o.m.apply(o);
 
 //this 指向一个对象
 //this 并不指这个函数本身
-function foo() {
+function foo1() {
     console.log('---')
     console.log(this.bar)
 }
@@ -90,14 +90,15 @@ function foo() {
 var bar = "global"
 var obj1 = {
     bar : "obj1",
-    foo:foo
+    foo1:foo1
 }
 var obj2 = {
     bar:"obj2"
 }
 
-foo();//在非严格模式下，foo() 最后会将 this 设置为全局对象
-obj1.foo();//将 this 设置为对象 obj1
+//this 并不指向这个函数本身，意识到这一点非常重要，因为这是最常见的误解。
+foo1();//在非严格模式下，foo() 最后会将 this 设置为全局对象
+obj1.foo1();//将 this 设置为对象 obj1
 foo.call(obj2);//将 this 设置为对象 obj2
-new foo()//将 this 设置为一个全新的空对象
+new foo1()//将 this 设置为一个全新的空对象
 
