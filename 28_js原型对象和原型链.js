@@ -2,11 +2,19 @@
 // object --> __proto__  每个对象都有的属性  构造器的原型，__proto__===constructor.prototype
 
 var a = {};
+console.log('----a')
 console.log(a.prototype); //undefined
-console.log(a.__proto__);//{}
+console.log(a.__proto__);//Object
+console.log('----b')
 var b = function () {};
-console.log(b.prototype);//b {}
-console.log(b.__proto__)//[Function] 函数也是对象
+console.log(b.prototype);//Object
+console.log(b.__proto__)//[Function] 函数也是对象  !!!这货的这个是个函数对象
+console.log('----c')
+var c = new b();
+console.log(c.prototype);//undefined
+console.log(c.__proto__)//Object
+console.log('----')
+
 
 
 // 三种对象创建方式
@@ -15,20 +23,20 @@ console.log(b.__proto__)//[Function] 函数也是对象
 // 字面量方式创建对象
 var a  = {};
 console.log('原型链指向');
-console.log(a.__proto__);//{}
+console.log(a.__proto__);//object
 console.log(a.__proto__===a.constructor.prototype)//true
-console.log(a.__proto__===Object.prototype)//
+console.log(a.__proto__===Object.prototype)//true
 // 构造器方式创建对象
 console.log('原型链指向2');
 var A = function () {}
 var a = new A();
-console.log(a.__proto__);//A {}
+console.log(a.__proto__);//object
 console.log(a.__proto__ === a.constructor.prototype); //true
-console.log(a.__proto__==A.prototype);//A {}
-console.log(a.constructor.prototype==A.prototype);
+console.log(a.__proto__==A.prototype);//true
+console.log(a.constructor.prototype==A.prototype);//true
 
 var a2 = new Object();
-console.log(a2.__proto__);//{}
+console.log(a2.__proto__);//object
 console.log(a2.__proto__ === a2.constructor.prototype); //true
 
 //Object
@@ -75,6 +83,9 @@ console.log(a6.__proto__.__proto__);//！！！{ age: '17' }
 
 //总结，a.__proto__ == 它的构造器的.prototype ,但是Object.create(a5);指向它的a5。
 //原型链继承只是粗略了解，具体情况还需深入理解
+
+
+
 
 
 
