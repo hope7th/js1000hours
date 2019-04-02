@@ -115,3 +115,48 @@ console.log(tmps);
 // 但对于复合类型的数据（主要是对象和数组），变量指向的内存地址，保存的只是一个指针，const只能保证这个指针是固定的，至于它指向的数据结构是不是可变的，就完全不能控制了。因此，将一个对象声明为常量必须非常小心。
 //
 
+//二进制转化为十进制用到的栈算法
+
+function divideBy2(decNumber) {
+    var remStack = new es6Stack(),remm,binaryString = '';
+    while (decNumber>0){
+        rem = Math.floor(decNumber % 2);
+        remStack.push(rem);
+        decNumber = Math.floor(decNumber / 2)
+    }
+
+    while (!remStack.isEmpty()){
+        binaryString += remStack.pop().toString();
+    }
+
+    return binaryString;
+}
+
+console.log(divideBy2(333))
+console.log(divideBy2(10))
+console.log(divideBy2(1000))
+
+//任意进制之间的转化
+var digits = '0123456789ABCDEF'
+console.log(digits[10])
+function baseConverter(decNumber,base) {
+    var remStack = new es6Stack(),remm,binaryString = '';
+    while (decNumber>0){
+        rem = Math.floor(decNumber % base);
+        remStack.push(rem);
+        decNumber = Math.floor(decNumber / base)
+    }
+
+    while (!remStack.isEmpty()){
+        binaryString += digits[remStack.pop()];//堆栈中的数字进行转化
+
+    }
+    return binaryString;
+}
+
+console.log(baseConverter(100235,2))
+console.log(baseConverter(100235,8))
+console.log(baseConverter(100235,16))
+
+//栈再字符串中的应用
+

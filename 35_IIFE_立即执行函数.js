@@ -23,5 +23,6 @@ var y = function ss() {
 }
 
 console.log(y);
-
+console.log(y())
+console.log(a)
 
