@@ -34,5 +34,5 @@ console.log(b.toFixed(2))
 //为什么字符串有方法，存在一个 String(S 大写)对象封装形式，通常称为“原生的”，与基本类型相对应
 //
 
-
-
+//js "假的值"
+//"",0,-0,NaN,null,undefined,false
