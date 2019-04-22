@@ -58,9 +58,34 @@ let b = [0];
 Object.freeze(b);
 b[0]=1;
 console.log(typeof b)
-b.push(2)
+// b.push(2)//Cannot add property 1, object is not extensible
 
+//一个浅冻结的例子
+obj1 = {
+    internal:{}
+}
+Object.freeze(obj1);
+obj1.internal.a = "aValue";
+console.log(obj1.internal.a)
+//深冻结
+function deepFreeze(obj) {
+    var propNames = Object.getOwnPropertyNames(obj);
+    propNames.forEach(function (name) {
+        var prop = obj[name];
+        if (typeof prop=="object"&&prop!==null){
+            deepFreeze(prop)
+        }
+    })
 
+    return Object.freeze(obj)
+}
 
+var obj2 = {
+    internal: {}
+}
+
+deepFreeze(obj2)
+obj2.internal.a = "sssss";
+console.log(obj2.internal.a)
 
 
