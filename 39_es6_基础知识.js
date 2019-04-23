@@ -89,3 +89,4 @@ obj2.internal.a = "sssss";
 console.log(obj2.internal.a)
 
 
+console.log('stash')
