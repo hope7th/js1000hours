@@ -90,6 +90,29 @@ foo7()
 // console(b3) ReferenceError: b3 is not defined
 //var 申明的变量只提升在函数作用域的最顶端或者全局作用域最顶端
 
+//非严格模式下,自动升级为全局变量
+function foo8 () {
+  // "use strict"
+  a4 = 4
+}
+foo8()
+console.log(a4)
+
+//函数作用域内声明的变量能不能提升成全局变量呢
+function foo9(){
+  console.log(a5)//undefined 能提升到函数的最顶端
+  var a5 = 5
+  // console.log(a6) //a6 is not defined
+
+  {
+    // console.log(a6)//let什么的变量，只属于块，切不能提升
+    let a6 = 6
+
+  }
+}
+
+foo9()
+// console.log(a5) //a5 is not defined
 
 
 
