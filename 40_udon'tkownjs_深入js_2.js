@@ -28,3 +28,13 @@ var x = (function iife() {
   return 42
 })()
 console.log(x)
+
+//闭包
+function makeAdder (x) {
+  function add (y) {
+    return y+x;
+  }
+  return add
+}
+
+console.log(makeAdder(1)(2))
