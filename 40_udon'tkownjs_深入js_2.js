@@ -38,3 +38,22 @@ function makeAdder (x) {
 }
 
 console.log(makeAdder(1)(2))
+
+function User () {
+  var username,password;
+  function doLogin (user,pw) {
+    username = user;
+    password = pw;
+  }
+  var publicAPI = {
+    login:doLogin
+  };
+  return publicAPI;
+}
+var fred = User();
+fred.login("fred","12Battery34!");
+console.info(fred)
+var fred1 = new User();
+fred1.login("fred1","1234567")
+console.info(fred1)
+//new运算符是用来实例化一个类，从而在内存中分配一个实例对象。
