@@ -1,12 +1,12 @@
 function LinkedList() {
-    let node = function (element) {
+    let _node = function (element) {
         this.element = element;
         this.next = null;
     }
     let length = 0;
     let head = null;
     this.append = function (element) {
-        let node = new node(element),current;
+        let node = new _node(element),current;
         if (head===null){
             head = node;
         } else {
@@ -38,7 +38,7 @@ function LinkedList() {
     };
     this.inset = function (position,element) {
         if (position>=0 && position<=length){
-            let node = new Node(element),
+            let node = new _node(element),
                 current = head,
                 previous,
                 index = 0;
@@ -58,6 +58,24 @@ function LinkedList() {
         } else {
             return false;
         }
+    };
+    this.toString  = function () {
+        let current = head,
+            string = '';
+        while (current){
+            console.log(current.element)
+            string +=current.element + (current.next?'n':'')
+            current = current.next;
+        }
+
+        return string;
     }
 
 }
+
+
+var link_list = new LinkedList();
+link_list.append('1');
+link_list.append('2');
+link_list.append('3');
+console.log(link_list.toString());
