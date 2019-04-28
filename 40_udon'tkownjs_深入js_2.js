@@ -57,3 +57,35 @@ var fred1 = new User();
 fred1.login("fred1","1234567")
 console.info(fred1)
 //new运算符是用来实例化一个类，从而在内存中分配一个实例对象。
+console.log("this------------")
+//this运算符 指的是一个对象，而不是函数
+var bar = "global";
+function foo4 () {
+  console.log(this)
+  console.log(this.bar)
+}
+var obj1 = {
+  bar:"obj1",
+  foo4:foo4
+}
+var obj2 = {
+  bar:"obj2"
+}
+
+foo4();
+obj1.foo4();
+foo.call(obj2);
+var obj3 = new foo4()//和obj3 = {}结果一样
+console.log(JSON.stringify(obj3))
+console.log(typeof obj3)
+
+//原型委托
+var foo5 = {
+  a:42
+}
+var bar = Object.create(foo5)
+bar.b = "hello world";
+console.log(bar.b);
+console.log(bar.a);
+
+
