@@ -89,3 +89,11 @@ console.log(bar.b);
 console.log(bar.a);
 
 
+if (!Number.isNaN){
+  Number.isNaN = function (x) {
+    return x !==x;
+    //即 NaN 是整个语言中唯一和
+    // 自身不相等的值。因此，NaN是使得x != x为真的唯一值。
+    
+  }
+}
