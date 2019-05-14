@@ -97,3 +97,27 @@ if (!Number.isNaN){
     
   }
 }
+
+function foo6(a=2){
+  console.log(a)
+}
+foo6()
+foo6(88)
+//此函数等价于
+function foo7 () {
+  var a = arguments[0]!==(void 0)?arguments[0]:2;
+  console.log(a)
+}
+foo7()
+foo7(99)
+
+console.info(void 0)
+console.log(void "ss")
+
+
+//为什么undefined无法作为默认参数传入
+//单看这段 ES6 版本的代码，你可能不会意识到 undefined 是唯一一个无法作为默认值参数 显式传入的值。而编译转换后的代码就更清楚地展示了这一点。
+
+//alert(..) 是由浏览器提供给 JavaScript 程序的,所以nodejs 无用
+
+//document 上的方法 getElementById(..) 看起来像是一个正常的 JavaScript 函数， 但它其实是浏览器的 DOM 提供的指向内置方法的一个很薄的暴露接口
