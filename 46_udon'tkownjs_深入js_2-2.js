@@ -68,3 +68,117 @@ function foo (x,y,z) {
   console.log(x,y,z)
 }
 foo(...[1,2,3])
+
+foo.apply(null,[1,2,3])  //调用一个对象的一个方法，用另一个对象替换当前对象。例如：B.apply(A, arguments);即A对象应用B对象的方法。
+var a  = [2,3,4];
+var b = [1,...a,5]
+console.log(b);
+function foo(x,y,...z) {
+  console.log(x,y,z)
+}
+foo(1,2,3,4,5)
+
+function foo3 (...args) {
+  args.shift();
+  console.log(...args)
+}
+
+function bar () {
+  console.log("arguments")
+  console.log(arguments)
+  //把arguments转换为一个真正的数组
+  var args = Array.prototype.slice.call(arguments)
+  //
+  args.push(4,5);
+  args = args.filter(function (v) {
+    return v%2 == 0;
+  });
+
+  foo3.apply(null,args)
+}
+
+bar(0,1,2,8)
+
+function foo4 (x,y) {
+  x = x||11;
+  y = y||31;
+  console.log(x+y);
+}
+foo4();
+foo4(0,89);//但同时又有点危险，比如，如果 对于一个参数你需要能够传入被认为是 falsy(假)的值。
+foo4(5);
+foo4(null,6)
+console.log('foo5----------------------')
+function foo5 (x,y) {
+  console.log(arguments)
+  x = (0 in arguments)?x:11;
+  console.log("x"+x)
+  y = (1 in arguments)?y:31
+  console.log(x+y)
+}
+foo5(5);
+foo5(undefined,8)
+console.log("默认表达式")
+//可以看到，默认值表达式是惰性求值的，这意味着它们只在需要的时候运行——也就是 说，是在参数的值省略或者为 undefined 的时候。
+function bar1 (val) {
+  console.log("val="+val)
+  return y + val;
+}
+function foo6 (x=y+3,z=bar1(x)) {
+  console.log(x,z)
+}
+var y = 5;
+foo6(10)
+y = 6
+foo6(undefined,10)
+
+
+var w = 1,z = 2;
+
+function foo7 (x=w+1,y=x+1,z=z+1) {//z + 1 中的 z 发现 z 是一个此刻还没初始化的参数变量，所以它永远不会试图从外 层作用域寻找 z。
+    console.log(x,y,z)
+}
+try {
+  foo7()
+}catch (e) {
+  console.log(e)
+}
+//这个奇怪的代码
+function foo8 (x = (function (v) {
+  return v+11
+})(31)) {
+  console.log(x)
+}
+foo8()
+foo8(1000)
+
+
+function foo9 (x = (function (v) {
+  return x+11
+})(22)) {
+  console.log(x)
+}
+
+try {
+  foo9()
+}catch (e) {
+  console.log(e)
+}
+console.log("解构")
+function foo10 () {
+  return [1,2,3]
+}
+
+function bar10 () {
+  return {
+    x:4,
+    y:5,
+    z:6
+  }
+}
+//于数组解构和对象解构。
+var [aj,bj,cj] = foo10();
+var {x:xj,y:yj,y:zj} = bar10();
+console.log(aj,bj,cj)
+console.log(xj,yj,zj)
+
