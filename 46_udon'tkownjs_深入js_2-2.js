@@ -182,4 +182,18 @@ var [aj,bj,cj] = foo10();
 var {x:xj,y:yj,y:zj} = bar10();
 console.log(aj,bj,cj)
 console.log(xj,yj,zj)
+console.log("对象属性赋值模式")
+var {x,y,z} = bar10();
+console.log(x,y,z)
+//但是{ x, .. }是省略掉了x:部分还是: x部分呢?实际上我们使用这个缩写语法的时候是
+// 略去了 x: 部分。
+var {x:bam,y:baz,z:bap} = bar10()
+try {
+  console.log(x,y,z)
+}catch (e) {
+  console.log(e)
+  console.log(bam,baz,bap)
+}
+
+
 
