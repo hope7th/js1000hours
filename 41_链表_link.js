@@ -91,6 +91,10 @@ function LinkedList() {
     this.getHead = function () {
         return head
     };
+    this.remove = function (element) {
+        let index = this.indexof(element);
+        return this.removeAt(index)
+    }
 
 }
 

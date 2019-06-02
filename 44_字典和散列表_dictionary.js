@@ -118,3 +118,66 @@ hash.put('Tyrion','tyrion@email.com');
 console.log(hash.get("Gandalf"));
 console.log(hash.get("John"));
 
+//线性探查,在数组里进行
+
+function HashTable() {
+    var table = [];
+    this.put = function (key,value) {
+        var position = loseloseHashCode(key);
+        console.log(position+'--'+key);
+        // table[position] = value;
+        if (table[position]==undefined){
+            table[position] = new ValuePair(key,value)
+        }else {
+            var index= ++position;
+            while (table[index]!=undefined){
+                index++
+            }
+            table[index] = new ValuePair(key,value);
+        }
+
+    };
+    this.get = function (key) {
+        var position = loseloseHashCode(key);
+        if (table[position]!==undefined){
+            if (table[position].key === key){
+                return table[position].value
+            } else {
+                var index = ++position;
+                while (table[index]===undefined||table[index].key!==key){//防止相邻的哈希函数值错误
+                    index++
+                }
+
+                if (table[index].key===key){
+                    return table[index].value
+                }
+            }
+            return undefined;
+        }
+        // return table[loseloseHashCode(key)]
+    };
+    this.remove = function (key) {
+        var position = loseloseHashCode(key);
+        if (table[position]!==undefined){
+            if (table[position].key === key){
+                table[index]=undefined;
+            } else {
+                var index = ++position;
+                while (table[index]===undefined||table[index].key!==key){//防止相邻的哈希函数值错误
+                    index++
+                }
+
+                if (table[index].key===key){
+                    table[index]=undefined;
+                }
+            }
+            return undefined;
+        }
+
+        // table[loseloseHashCode(key)] = undefined
+    };
+
+}
+
+
+
