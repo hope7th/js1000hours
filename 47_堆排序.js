@@ -54,6 +54,7 @@ function sort(elements){
 }
 
 var elements = [3, 1, 5, 7, 2, 4, 9, 6, 10, 8];
+console.log(elements)
 buildHeap(elements);
 console.log("大顶堆："+elements)
 console.log('before: ' + elements);
