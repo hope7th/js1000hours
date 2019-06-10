@@ -15,16 +15,45 @@
                 />
 
             </a-tab-pane>
+            <a-tab-pane key="event" tab="事件">
+                <Event
+                        :name="name"
+                        @change="handleEventChange"
+                ></Event>
+            </a-tab-pane>
+            <a-tab-pane key="slot" tab="插槽">
+                <p>作用域插槽，接受子组件的数据</p>
+                <Slot>
+                    <p>default slot</p>
+                    <template v-slot:title>
+                        <p>title</p>
+                        <p>title2</p>
+                    </template>
+                    <template v-slot:item="props">
+                        <p>item slot-scope {{ props.value }}</p>
+                    </template>
+                </Slot>
+                <Slot>
+                    <p>default slot</p>
+                    <p slot="title">title</p>
+                    <p slot="title">title2</p>
+                    <p slot="item" slot-scope="ss">hello {{ ss.value }}</p>
+                </Slot>
+            </a-tab-pane>
         </a-tabs>
     </div>
 </template>
 
 <script>
   import Props from "./Props"
+  import Event from "./Event"
+  import Slot from "./Slot"
   export default {
     name: 'index',
     components: {
-      Props
+        Props,
+        Event,
+        Slot
     },
     data: () => {
       return {
@@ -37,7 +66,10 @@
       handlePropChange(val){
         alert(val)
         this.type = val;
-      }
+        },
+        handleEventChange(val){
+          this.name = val
+        }
     }
   }
 </script>
