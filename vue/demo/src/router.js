@@ -13,6 +13,11 @@ export default new Router({
       path: "/1.1",
       name: "Vue三大核心概念(属性、事件、插槽)",
       component: () => import("./view/1.1")
+    },
+    {
+      path: "/1.2",
+      name: "双向绑定还是单向数据流",
+      component: () => import("./view/1.2")
     }
   ]
 })
