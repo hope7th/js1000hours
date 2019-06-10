@@ -40,6 +40,17 @@
                     <p slot="item" slot-scope="ss">hello {{ ss.value }}</p>
                 </Slot>
             </a-tab-pane>
+            <a-tab-pane key="bigProps" tab="大属性">
+                <BigProps
+                        :name="bigPropsName"
+                        :on-change="handleBigPropChange"
+                        :slot-default="getDefault()"
+                        :slot-title="getTitle()"
+                        :slot-scope-item="getItem"
+                >
+
+                </BigProps>
+            </a-tab-pane>
         </a-tabs>
     </div>
 </template>
@@ -48,12 +59,14 @@
   import Props from "./Props"
   import Event from "./Event"
   import Slot from "./Slot"
+  import BigProps from "./BigProps";
   export default {
     name: 'index',
     components: {
+        BigProps,
         Props,
         Event,
-        Slot
+        Slot,
     },
     data: () => {
       return {
@@ -69,6 +82,24 @@
         },
         handleEventChange(val){
           this.name = val
+        },
+        handleBigPropChange(val) {
+        this.bigPropsName = val;
+    },
+        getTitle(){
+          return [this.$createElement("p","default slot")]
+        },
+        getDefault(){
+          return [
+              this.$createElement("p","title slot1"),
+              this.$createElement("p","title slot2"),
+              //相同名称的插槽是合并，不是替换
+          ]
+        },
+        getItem(props){
+            return [
+                this.$createElement("p",`item slot-scope ${JSON.stringify(props)}`),
+            ]
         }
     }
   }
