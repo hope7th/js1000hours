@@ -1,4 +1,4 @@
-/*
+
 
 1 vdom意义
 1-1 传统界面操作
@@ -253,9 +253,9 @@ function applyPatches (node, currentPatches) {
 }
 
 
-6 总结
-vdom算法主要包含以上三个函数element,diff,patch
-使用思路如下
+// 6 总结
+// vdom算法主要包含以上三个函数element,diff,patch
+// 使用思路如下
 
 // 1. 构建虚拟DOM
 var tree = el('div', {'id': 'container'}, [
@@ -281,5 +281,5 @@ var patches = diff(tree, newTree)
 // 5. 在真正的DOM元素上应用变更
 patch(root, patches)
 
- */
+
 

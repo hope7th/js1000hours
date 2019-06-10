@@ -1,6 +1,7 @@
 //dictionary
-import linklist from './41_链表_link'
+// document.write("<script language=javascript src='./41_链表_link.js'></script>")
 
+var LinkedList = require('./41_链表_link');
 function Dictionary() {
     var items = {};
     this.has = function (key) {
@@ -178,6 +179,21 @@ function HashTable() {
     };
 
 }
+//更好的散列函数
+var djb2HashCode = function (key) {
+    var hash = 5381;
+    for (var i=0;i<key.length;i++){
+        hash = hash *33+key.charCodeAt(i);
+    } ;
+    return hash %1033;
+}
+// es6 map
+
+var map = new Map();
+map.set("Gandalf",'gandalf@email.com');
+map.set("John",'John@email.com');
+map.set("Tyrion",'John@email.com');
+console.log(map.has("Gandalf"));
 
 
 

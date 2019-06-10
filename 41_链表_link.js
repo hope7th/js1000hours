@@ -1,4 +1,4 @@
-function LinkedList() {
+var LinkedList = function () {
     let _node = function (element) {
         this.element = element;
         this.next = null;
@@ -190,4 +190,7 @@ function DoublyLinkList() {
 
 //循环链表
 //tail.next = head,head.prev = tail
-export default LinkedList;
+// export default LinkedList;
+module.exports = {
+    LinkedList
+}
