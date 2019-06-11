@@ -2,12 +2,17 @@
     <div>
         <select
                 :value="phoneInfo.areaCode"
-                aria-placeholder="区号"
+                placeholder="区号"
                 @change="handleAreaCodeChange"
         >
             <option value="+86">+86</option>
             <option value="+60">+60</option>
         </select>
+        <input :value="phoneInfo.phone"
+               type="number"
+               placeholder="手机号"
+               @change="handlePhoneChange"
+        />
         <input
                 :value="zipCode"
                 type="number"
@@ -21,10 +26,10 @@
 <script>
     export default {
         name: "PersonalInfo",
-        // model: {
-        //     prop: "phoneInfo", // 默认 value
-        //     event: "change" // 默认 input
-        // },
+        model: {
+            prop: "phoneInfo", // 默认 value
+            event: "change" // 默认 input
+        },
         props:{
             phoneInfo:Object,
             zipCode:String
