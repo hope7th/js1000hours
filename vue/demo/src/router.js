@@ -18,6 +18,11 @@ export default new Router({
       path: "/1.2",
       name: "双向绑定还是单向数据流",
       component: () => import("./view/1.2")
+    },
+    {
+      path: "/1.3",
+      name: "虚拟dom",
+      component: () => import("./view/1.3")
     }
   ]
 })
