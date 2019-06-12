@@ -28,6 +28,11 @@ export default new Router({
       path: "/1.4",
       name: "触发组件的更新",
       component: () => import("./view/1.4")
+    },
+    {
+      path: "/1.5",
+      name: "计算属性和侦听器",
+      component: () => import("./view/1.5")
     }
   ]
 })
