@@ -23,6 +23,11 @@ export default new Router({
       path: "/1.3",
       name: "虚拟dom",
       component: () => import("./view/1.3")
+    },
+    {
+      path: "/1.4",
+      name: "触发组件的更新",
+      component: () => import("./view/1.4")
     }
   ]
 })

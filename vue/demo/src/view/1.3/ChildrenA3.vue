@@ -1,7 +1,7 @@
 <template>
     <div class="border">
         <h1>A 节点</h1>
-        <button @click="init=!init">删除CEF,新建CEF</button>
+        <button @click="init=!init">删除CEF,新建GEF</button>
         <div v-if="init">
             <ChildrenB/>
             <ChildrenC>
