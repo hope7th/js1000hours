@@ -33,6 +33,11 @@ export default new Router({
       path: "/1.5",
       name: "计算属性和侦听器",
       component: () => import("./view/1.5")
-    }
+    },
+    {
+      path: "/1.6",
+      name: "生命周期的应用场景和函数式组件",
+      component: () => import("./view/1.6")
+    },
   ]
 })

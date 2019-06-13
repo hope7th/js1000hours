@@ -21,9 +21,13 @@
       }
     },
     watch:{
-      fullName:function (val,oldVal) {
-        console.log("new:%s,old:%s",val,oldVal)
-      }
+        // watch,不能用于计算属性
+        fullName:function (val,oldVal) {
+            console.log("new:%s,old:%s",val,oldVal)
+        },
+        firstName:function (val,oldVal) {
+            console.log("new:%s,old:%s",val,oldVal)
+        }
     }
   }
 </script>
