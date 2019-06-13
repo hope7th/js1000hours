@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from "./view/Home.vue";
 Vue.use(Router)
 export default new Router({
+  mode:'history',
   routes:[
     {
       path:'/',
@@ -39,5 +40,15 @@ export default new Router({
       name: "生命周期的应用场景和函数式组件",
       component: () => import("./view/1.6")
     },
+    {
+      path: "/1.7",
+      name: "内置指令和自定义指令",
+      component: () => import("./view/1.7")
+    },
+    {
+      path: "/1.8",
+      name: "provie/inject",
+      component: () => import("./view/1.8")
+    }
   ]
 })
