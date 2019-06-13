@@ -1,0 +1,45 @@
+<template>
+    <div>
+        <h2>v-text</h2>
+        <div v-text="'hello vue'">hello world</div>
+        <h2>v-html</h2>
+        <div v-html="'<span style=\'color: red\'>hello vue</span>'">
+            hello world
+        </div>
+        <h2>v-show</h2>
+        <div v-show="show">hello v-show</div>
+        <div @click="show=!show">change show</div>
+        <h2>v-if v-else-if v-else</h2>
+        <div v-if="number===1">hello vue {{number}}</div>
+        <div v-else-if="number===2">hello world {{number}}</div>
+        <div v-else>hello geektime {{number}}</div>
+        <h2>v-on</h2>
+        <button v-on:click="number=number+1">number++</button>
+        <h2>v-model</h2>
+        <input v-model="message"/>
+        <h2>v-pre</h2>
+        <div v-pre>{{ this will not be compiled}}</div>
+        <h2>v-once</h2>
+        <div v-once>
+            {{ number }}
+        </div>
+    </div>
+</template>
+
+<script>
+  export default {
+    name: 'Directives',
+    data(){
+      this.log = window.console.log
+      return {
+        show:false,
+        number:1,
+        message:'hello vue'
+      }
+    }
+  }
+</script>
+
+<style scoped>
+
+</style>
