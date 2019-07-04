@@ -31,7 +31,7 @@ export default new Router({
       component: () => import("./view/1.4")
     },
     {
-      path: "/1.5",
+      path: "/current/details.html",
       name: "计算属性和侦听器",
       component: () => import("./view/1.5")
     },

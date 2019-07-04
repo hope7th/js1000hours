@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`counter.vue renders couter html 1`] = `<div><span>0</span> <button>count++</button></div>`;
+
+exports[`counter.vue renders props.msg when passed 1`] = `<div><span>0</span> <button>count++</button></div>`;
