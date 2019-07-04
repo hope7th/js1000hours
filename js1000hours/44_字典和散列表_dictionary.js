@@ -1,7 +1,3 @@
-//dictionary
-// document.write("<script language=javascript src='./41_链表_link.js'></script>")
-
-var LinkedList = require('./41_链表_link');
 function Dictionary() {
     var items = {};
     this.has = function (key) {
@@ -43,14 +39,14 @@ var loseloseHashCode = function (key) {
 }
 //散列表。主要是散列函数,用数组来实现
 //解决散列冲突，分离联表法
-function HashTable() {
+function HashTable1() {
     var table = [];
     this.put = function (key,value) {
         var position = loseloseHashCode(key);
         console.log(position+'--'+key);
         // table[position] = value;
         if (table[position]==undefined){
-            table[position] = new linklist()
+            table[position] = new LinkedList()
         }
 
         table[position].append(new ValuePair(key,value))
@@ -112,12 +108,14 @@ var ValuePair = function (key,value) {
 
 //
 
-var hash = new HashTable();
+var hash = new HashTable1();
+console.log("-------")
 hash.put('Gandalf','gandalf@email.com');
 hash.put('John','john@email.com');
 hash.put('Tyrion','tyrion@email.com');
 console.log(hash.get("Gandalf"));
 console.log(hash.get("John"));
+console.log("-------")
 
 //线性探查,在数组里进行
 
@@ -125,7 +123,7 @@ function HashTable() {
     var table = [];
     this.put = function (key,value) {
         var position = loseloseHashCode(key);
-        console.log(position+'--'+key);
+        newFunction()(position+'--'+key);
         // table[position] = value;
         if (table[position]==undefined){
             table[position] = new ValuePair(key,value)
@@ -178,6 +176,10 @@ function HashTable() {
         // table[loseloseHashCode(key)] = undefined
     };
 
+
+    function newFunction() {
+        return console.log;
+    }
 }
 //更好的散列函数
 var djb2HashCode = function (key) {
@@ -194,6 +196,10 @@ map.set("Gandalf",'gandalf@email.com');
 map.set("John",'John@email.com');
 map.set("Tyrion",'John@email.com');
 console.log(map.has("Gandalf"));
+
+
+
+
 
 
 
