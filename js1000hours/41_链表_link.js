@@ -187,10 +187,3 @@ function DoublyLinkList() {
         }
     };
 }
-
-//循环链表
-//tail.next = head,head.prev = tail
-// export default LinkedList;
-module.exports = {
-    LinkedList
-}
