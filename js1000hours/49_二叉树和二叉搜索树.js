@@ -160,6 +160,46 @@ var insertNode = function (node,newNode) {
   }
 }
 
+//平衡树
+
+var heightNode = function(node){
+  if(node==null){
+    return -1;
+  }else {
+    return Math.max(heightNode(node.left),heightNode(node.right))+1;
+  }
+}
+var rotationRR = function(node){
+  var tmp = node.right;
+  node.right = tmp.left;
+  tmp.left = node;
+  return tmp;
+}
+var rotationLL = function(node){
+  var tmp = node.left;
+  node.left = tmp.right;
+  tmp.right = node;
+  return tmp
+}
+var insertAVLNode = function(node,element){
+  if(node===null){
+    node = new Node(element)
+  }else if(element<node.key){
+    node.left = insertAVLNode(node.left,element)
+    if(node.left!==null){
+
+    }
+  }else if(element>node.key){
+    node.right = insertAVLNode(node.right,element);
+    if(node.right!==null){
+
+    }
+  }
+}
+
+
+
+
 var tree = new BinarySearchTree();
 tree.insert(11);
 tree.insert(7);
@@ -193,3 +233,4 @@ console.log(tree.search(8) ? 'Key 8 found.' : 'Key 8 not found.');
 console.log("移除节点")
 console.log(tree.remove(9))
 tree.inOrderTraverse(printNode)
+

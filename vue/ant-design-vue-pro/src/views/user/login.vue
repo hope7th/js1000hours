@@ -1,6 +1,6 @@
 <template>
     <div>
-        login
+        登录
     </div>
     
 </template>
@@ -11,6 +11,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
