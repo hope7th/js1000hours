@@ -50,3 +50,9 @@ function loadImageAsync(url) {
 // }),(error=> {
 //     console.info(error);
 // }));
+
+// 与传统方案比较
+//1:传统异步编程的解决方案：回调函数。
+//2:可以储存状态，从pending变为fulfilled，从pending变为rejected。如果改变已经发生了，你再对promise对象添加回调函数，也会立即得到这个结果。这与事件（event）完全不同，事件的特点是：如果你错过了它，再去监听是得不到结果的。
+
+
