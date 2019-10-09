@@ -84,6 +84,8 @@ console.log(a6.__proto__.__proto__);//！！！{ age: '17' }
 //总结，a.__proto__ == 它的构造器的.prototype ,但是Object.create(a5);指向它的a5。
 //原型链继承只是粗略了解，具体情况还需深入理解
 
+//原型链终点都是object,
+
 
 
 

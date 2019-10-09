@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 module.exports = {
     entry: {
         index: './src/index.js',
@@ -8,7 +9,8 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         filename: '[name].js'
     },
-    mode: 'production',
+    // mode: 'production',
+    mode: 'development',
     module: {
         rules: [{
                 test: /.js$/,
@@ -30,5 +32,12 @@ module.exports = {
                 ]
             }
         ]
+    },
+    plugins:[
+        new webpack.HotModuleReplacementPlugin()
+    ],
+    devServer:{
+        contentBase:'./dist',
+        hot:true
     }
 }

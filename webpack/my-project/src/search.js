@@ -4,7 +4,7 @@ import './search.css';
 import './search.less';
 class Search extends React.Component {
     render(){
-        return <div class="search-text">Search Text</div>
+        return <div class="search-text">搜索文章</div>
     }
 }
 
