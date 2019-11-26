@@ -4,10 +4,18 @@ import './index.css';
 import { callExpression } from '@babel/types';
 
 class Square extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            value:null
+        }
+    }
     render(){
         return (
-            <button className="square">
-
+            <button className="square" onClick={()=>{
+                this.setState({value:'X'})
+            }}>
+                {this.state.value}
             </button>
         )
     }
@@ -15,7 +23,7 @@ class Square extends React.Component{
 
 class Board extends React.Component{
     renderSquare(i){
-        return <Square></Square>
+        return <Square value={i}></Square>
     }
     render(){
         const status = "Next player:X";
