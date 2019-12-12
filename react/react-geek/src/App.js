@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import Hello from "./hello";
 import ChatApp from "./c01/ChatApp";
 import CommentBox from "./c02/CommentBox";
+import { StatefulTabSelectSample } from "./c02/StatefulTabSelector";
+
 // import ListSample from "./c31/App";
 // import WizardSample from "./c35/App";
 import './App.css';
@@ -13,8 +15,9 @@ const styles = {
   paddingLeft:"250px"
 };
 const routerMap = {
-  chat:ChatApp,
-  commentbox:CommentBox
+  'chat':ChatApp,
+  'commentbox':CommentBox,
+  'stateful-tab-selectSample':StatefulTabSelectSample
 }
 
 class App extends React.PureComponent {
