@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@3.1.1/dist/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        const Child = {
+            template: `<div @click="changeMsg('hellosss')">{{msg}}</div>`,
+            props: {
+                msg: {
+                    type: String,
+                    default: "Hello World"
+                }
+            },
+            methods: {
+                changeMsg(newMsg) {
+                    this.$emit('updateMsg', newMsg)
+                }
+            }
+
+        }
+        const Father = {
+            template: `<Child :msg="parentMsg" @updateMsg="changeParentMsg" ></Child>`,
+            components: {
+                Child
+            },
+            data() {
+                return {
+                    parentMsg: 'somes words'
+                }
+            },
+            methods: {
+                changeParentMsg: function (newMsg) {
+                    this.parentMsg = newMsg
+                }
+            }
+
+        }
+        new Vue({
+            render: h => h(Father),
+        }).$mount('#app')
+
+        // 直接修改组件内 prop 的 msg 字段是不提倡的，? why???
+        // props 和 data 同时包含某属性，优先使用那个
+    </script>
+</body>
+
+</html>
