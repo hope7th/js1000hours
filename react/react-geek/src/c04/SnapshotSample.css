@@ -1,0 +1,8 @@
+.snapshot-sample {
+    overflow: auto;
+    height: 100px;
+    widows: 300px;
+    border: 1px solid #eee;
+    padding: 20px;
+  }
+  

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import Hello from "./hello";
 import ChatApp from "./c01/ChatApp";
 import CommentBox from "./c02/CommentBox";
+import { TabSelectorSample } from "./c02/TabSelector";
 import { StatefulTabSelectSample } from "./c02/StatefulTabSelector";
 
 // import ListSample from "./c31/App";
@@ -17,6 +18,7 @@ const styles = {
 const routerMap = {
   'chat':ChatApp,
   'commentbox':CommentBox,
+  'tab-selector':TabSelectorSample,
   'stateful-tab-selectSample':StatefulTabSelectSample
 }
 

@@ -58,7 +58,8 @@ const options = [
 export class StatefulTabSelectSample extends PureComponent{
     render(){
         return(
-            <div>Select color:<StatefulTabSelect options={options} initialValue="red" /></div>
+            <div>Select color:<StatefulTabSelect options={options}
+            onChange={c => this.setState({ color: c })} initialValue="red" /></div>
         )
     }
 }

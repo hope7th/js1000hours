@@ -1,6 +1,6 @@
 /*
 flow，水一样的时间老人，
-undefined(未怀孕)，Boolean(未出生),number(幼儿园),String(简单少年),null(大学生),Object(有对象，会干活的是函数，退休的挂个名),class(我有构造函数，已婚可遗传后代),Array(集体生活)
+undefined(未怀孕)，Boolean(未出生),number(幼儿园),String(简单少年),null(大学生),Object(有对象，会干活的是函数),class(我有构造函数，已婚可遗传后代),Array(集体生活)
 
 类型推断：通过变量的使用上下文来推断出变量类型，然后根据这些推断来检查类型。（猜)
 
