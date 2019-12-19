@@ -37,4 +37,24 @@ this.$router.push('/non-existing')
 this.$route.params.pathMatch // '/non-existing'
 
 4，高级匹配模式
+// ?可选参数
+{path:/optional-params/:foo?}
+<router-link to="/optional-params">/optional-params</router-link>
+<router-link to="/optional-params/foo">/optional-params/foo</router-link>
 
+//零个或多个参数
+{path:'/optional-params/*'}
+<router-link to="/number">没有参数</router-link>
+<router-link to="/number/foo000">一个参数</router-link>
+<router-link to="/number/foo111/fff222">多个参数</router-link>
+
+//一个或多个参数
+{path:"/option-params"/:foo+}
+<router-link to="/number/foo">一个参数</router-link>
+<router-link to="/number/foo/foo111/fff222">多个参数</router-link>
+
+//自定义参数匹配
+{path:'/optional-params/:id(\\d+)'}
+{path:'/optional-params/(foo/)?bar'}
+
+未完待续，让我想想可否。

@@ -7,13 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
-    <script src="https://unpkg.com/vuex@3.1.1/dist/vuex.js"></script>
     <script src="https://unpkg.com/vue-router@3.1.3/dist/vue-router.min.js"></script>
-    
 </head>
 
 <body>
-    <div id="app"></div>
+    <div id="app">
+    </div>
     <script>
         const Child = {
             template: `<div @click="changeMsg('hellosss')">{{msg}}</div>`,
@@ -45,21 +44,34 @@
                     this.parentMsg = newMsg
                 }
             }
-
         }
+        var App = {
+            template: `<div>
+                <h1>vue-router的demo</h1>
+                <ul id="main">
+			    <li><router-link  to="/" >父亲</router-link></li>
+			    <li><router-link  to="/child">孩子</router-link></li>
+		     </ul>
+                <router-view></router-view>
+                </div>`,
+        }
+        var router = new VueRouter({
+            routes: [{
+                    name: 'home',
+                    component: Father,
+                    path: '/'
+                },
+                {
+                    name: 'test',
+                    component: Child,
+                    path: '/child'
+                },
+            ]
+        })
         new Vue({
-            render: h => h(Father),
+            router,
+            render: h => h(App),
         }).$mount('#app')
-
-        // 子组件实例化的时候，子组件将 updateMsg 事件使用$on函数注册到组件内部，需要触发事件的时候，调用函数this.$emit来触发事件。
-
-//         $on：监听、注册事件。
-// $emit：触发事件。
-// $once：注册事件，仅允许该事件触发一次，触发结束后立即移除事件。
-// $off：移除事件。
-
-        // 直接修改组件内 prop 的 msg 字段是不提倡的，? why???
-        // props 和 data 同时包含某属性，优先使用那个
     </script>
 </body>
 
