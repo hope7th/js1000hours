@@ -5,7 +5,7 @@ import ChatApp from "./c01/ChatApp";
 import CommentBox from "./c02/CommentBox";
 import { TabSelectorSample } from "./c02/TabSelector";
 import { StatefulTabSelectSample } from "./c02/StatefulTabSelector";
-
+import SnapshotSample from "./c04/SnapshotSample";
 // import ListSample from "./c31/App";
 // import WizardSample from "./c35/App";
 import './App.css';
@@ -19,7 +19,8 @@ const routerMap = {
   'chat':ChatApp,
   'commentbox':CommentBox,
   'tab-selector':TabSelectorSample,
-  'stateful-tab-selectSample':StatefulTabSelectSample
+  'stateful-tab-selectSample':StatefulTabSelectSample,
+  'snapshot-sample':SnapshotSample
 }
 
 class App extends React.PureComponent {
