@@ -6,6 +6,8 @@ import CommentBox from "./c02/CommentBox";
 import { TabSelectorSample } from "./c02/TabSelector";
 import { StatefulTabSelectSample } from "./c02/StatefulTabSelector";
 import SnapshotSample from "./c04/SnapshotSample";
+import DomDiff from "./c05/DomDiff";
+import { AdvancedTabSelectorSample } from "./c06/AdvancedTabSelector";
 // import ListSample from "./c31/App";
 // import WizardSample from "./c35/App";
 import './App.css';
@@ -20,7 +22,9 @@ const routerMap = {
   'commentbox':CommentBox,
   'tab-selector':TabSelectorSample,
   'stateful-tab-selectSample':StatefulTabSelectSample,
-  'snapshot-sample':SnapshotSample
+  'snapshot-sample':SnapshotSample,
+  "dom-diff": DomDiff,
+  "advanced-tabselector-sample":AdvancedTabSelectorSample
 }
 
 class App extends React.PureComponent {
