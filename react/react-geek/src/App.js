@@ -8,6 +8,7 @@ import { StatefulTabSelectSample } from "./c02/StatefulTabSelector";
 import SnapshotSample from "./c04/SnapshotSample";
 import DomDiff from "./c05/DomDiff";
 import { AdvancedTabSelectorSample } from "./c06/AdvancedTabSelector";
+import LocaleSample from "./c07/LocaleSample";
 // import ListSample from "./c31/App";
 // import WizardSample from "./c35/App";
 import './App.css';
@@ -24,7 +25,8 @@ const routerMap = {
   'stateful-tab-selectSample':StatefulTabSelectSample,
   'snapshot-sample':SnapshotSample,
   "dom-diff": DomDiff,
-  "advanced-tabselector-sample":AdvancedTabSelectorSample
+  "advanced-tabselector-sample":AdvancedTabSelectorSample,
+  "locale-sample": LocaleSample,
 }
 
 class App extends React.PureComponent {
