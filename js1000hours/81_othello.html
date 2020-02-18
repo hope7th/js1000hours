@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>othello</title>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+    <script>
+        let board = [
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 2, 1, 1, 0, 0],
+            [0, 0, 1, 2, 2, 2, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0]
+        ];
+        let container = document.getElementById("container")
+        let color = 1;
+        render()
+
+        function render() {
+            container.innerHTML = ""
+            for (let y = 0; y < 8; y++) {
+                for (let x = 0; x < 8; x++) {
+                    let element = document.createElement("div");
+                    element.style =
+                        "vertical-align:bottom;border:solid 1px white;width:50px;height:50px;background-color:darkgreen;display:inline-block";
+                    element.addEventListener("click", (event) => {
+                        console.log(x, y);
+                        let ox = x,
+                            oy = y;
+                        let hasOpposite = false;
+                        let canMove = false;
+                        debugger
+                        if (board[y][x] !== 0)
+                            return;
+
+                        while (--x > 0) {
+                            if (board[y][x] === 3 - color) {
+                                hasOpposite = true;
+                            }
+                            if (board[y][x] === color) {
+                                if (hasOpposite) {
+                                    canMove = true;
+                                }
+
+                                break
+                            }
+
+                            if (board[y][x] == 0) {
+                                break
+                            }
+                        }
+
+                        if (canMove) {
+                            while (++x != ox) {
+                                board[y][x] = color;
+                            }
+
+                            color = 3 - color;
+
+                        }
+
+
+                        render()
+                    })
+                    if (board[y][x] == 1) {
+                        let disc = document.createElement("div");
+                        disc.style =
+                            "margin-top:5px;margin-left:5px;border-radius:20px;width:40px;height:40px;background-color:black";
+                        element.appendChild(disc)
+                    } else if (board[y][x] == 2) {
+                        let disc = document.createElement("div");
+                        disc.style =
+                            "margin-top:5px;margin-left:5px;border-radius:20px;width:40px;height:40px;background-color:white";
+                        element.appendChild(disc)
+                    }
+                    container.appendChild(element)
+                }
+                container.appendChild(document.createElement("br"))
+            }
+        }
+    </script>
+</body>
+
+</html>
