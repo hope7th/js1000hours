@@ -6,7 +6,8 @@ function run(){
     const initialState  = {count:0};
 
     // reducer
-    const conter = (state=initialState,action)=>{
+    const counter = (state=initialState,action)=>{
+        debugger
         switch (action.type){
             case "PLUS_ONE":
                 return {count:state.count +1};
@@ -27,24 +28,28 @@ function run(){
     const store = createStore(
         combineReducers({
             todos,
-            conter
+            counter
         })
     );
+
+    // const store = createStore(
+    //     counter
+    // );
     function plusOne(){
         //action
-        return {type:"PLUS_ONE"};
+        return { type: "PLUS_ONE"};
     }
     function minusOne(){
-        return {type:"MINUS_ONE"};
+        return {type: "MINUS_ONE"};
     }
     function customCount(count){
-        return {type:"COSTOM_COUNT",payload:{count}}
+        return { type: "COSTOM_COUNT",payload: {count} }
     }
 
     plusOne = bindActionCreators(plusOne,store.dispatch);
     store.subscribe(()=>console.log(store.getState()));
     plusOne();
-    store.dispatch(minusOne);
+    store.dispatch(minusOne());
     store.dispatch(customCount(5))
 }
 

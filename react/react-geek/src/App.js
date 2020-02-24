@@ -9,6 +9,12 @@ import SnapshotSample from "./c04/SnapshotSample";
 import DomDiff from "./c05/DomDiff";
 import { AdvancedTabSelectorSample } from "./c06/AdvancedTabSelector";
 import LocaleSample from "./c07/LocaleSample";
+import PureRedux from "./c11/PureRedux";
+import Counter from "./c12/Counter";
+import AsyncAction from "./c13/AsyncAction";
+import ReduxMiddleware from "./c13/ReduxMiddleware";
+import OrgActions from "./c14/OrgActions";
+import RouterSample from "./c16/RouterSample";
 // import ListSample from "./c31/App";
 // import WizardSample from "./c35/App";
 import './App.css';
@@ -27,6 +33,12 @@ const routerMap = {
   "dom-diff": DomDiff,
   "advanced-tabselector-sample":AdvancedTabSelectorSample,
   "locale-sample": LocaleSample,
+  "pure-redux": PureRedux,
+  counter: Counter,
+  "async-action": AsyncAction,
+  "redux-middleware": ReduxMiddleware,
+  "org-actions": OrgActions,
+  "router-sample": RouterSample,
 }
 
 class App extends React.PureComponent {
