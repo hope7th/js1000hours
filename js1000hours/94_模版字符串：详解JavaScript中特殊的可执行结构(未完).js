@@ -32,9 +32,21 @@
 
     // 那么这个参数展开是怎么实现的呢？答案是迭代器。
 
-
+   /**
+    * 赋值模版。
+    * a = b
+    * 等号的左侧称为赋值模板（AssignmentPattern），而右侧称为值 (Value）。
+    * 即使没有这个“赋值符号（等号）”，只要语义是“向左操作数（lhs）上的标识符，
+    * 赋以右操作数（rhs）的值”，那么它就适用于模板赋值。
+    * function foo({x, y}) { ...}
+    * for (var {x, y} in obj) { ...}
+    * 
+    */
+   /**
+    * 完全无法理解下面代码
+    */
    var x1 = 2;
-   foo = (...args) => console.log(...args);
+   foo = (...args) => console.log(args);
+   foo() // 2
    foo(`${x1}`) // 2
    foo `${x1}` // [ '', '' ] 2
-   
