@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background: #fff;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    li {
+        color: #008080;
+        list-style: none;
+    }
+
+    li:nth-child(2n + 1) {
+        color: #000080;
+    }
+
+    li:hover {
+        color: red;
+    }
+
+
+    li:hover input[type=checkbox] {
+        outline: 10px solid red !important;
+        outline-offset: -10px;
+    }
+
+    input[type=checkbox] {
+        position: relative;
+        color: inherit;
+        outline: 10px solid #008080;
+        outline-offset: -10px;
+    }
+
+    li:nth-child(2n + 1) input[type=checkbox] {
+        position: relative;
+        color: inherit;
+        outline: 10px solid #000080;
+        outline-offset: -10px;
+    }
+
+    input[type=checkbox]::before,
+    input[type=checkbox]::after {
+        position: absolute;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        line-height: 12px;
+        border-radius: 3px;
+        text-align: center;
+    }
+
+    input[type=checkbox]:checked::after {
+        content: 'x';
+        color: white;
+    }
+
+    input[type=checkbox]::before {
+        content: ' ';
+        background-color: currentColor;
+    }
+</style>
+
+<body>
+    <ul>
+        <li><input type="checkbox">第1项</li>
+        <li><input type="checkbox">第2项</li>
+        <li><input type="checkbox">第3项</li>
+        <li><input type="checkbox">第4项</li>
+        <li><input type="checkbox">第5项</li>
+        <li><input type="checkbox">第6项</li>
+    </ul>
+</body>
+
+</html>
