@@ -49,6 +49,38 @@ function Graph() {
                 callback(u)
             }
         }
+    };
+    this.BFS=function(v){
+        var color = initializeColor(),
+        queue = new Queue(),
+        d = [],
+        pred = [];
+        queue.enqueue(v);
+        for(var i=0;i<vertices.length;i++){
+            d[vertices[i]] = 0;
+            pred[vertices[i]] = null;
+        }
+        while(!queue.isEmpty()){
+            var  u = queue.dequeue(),
+            neighbors = adjList.get(u);
+            color[u] = "grey";
+            for(i=0;i<neighbors.length;i++){
+                var w = neighbors[i];
+                if(color[w]==="white"){
+                    color[w] = "grey";
+                    d[w] = d[u] +1;
+                    pred[w] = u;
+                    queue.enqueue(w);
+                }
+            }
+            color[u] = "black";
+        }
+
+        return {
+            distances:d,
+            predecessors:pred
+        };
+
     }
 }
 

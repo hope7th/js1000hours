@@ -6,7 +6,10 @@ var x = 1;
 var y = x;
 
 var x1 = "12312312";
-var y1 = x2;
+var y1 = x1;
+var Obj = {
+    x:"ss"
+}
 
 /*那么值“该怎么赋值和传递”呢？如果x的值是1，那么y = x的话，就是把1这个值“抄写”到y里面去。
 这是“正常的值”的处理方法，但是如果“字符串值”也这么处理，就完蛋了，
@@ -47,8 +50,42 @@ delete 0
 
 x = x
 // 所有赋值操作的含义，是将右边的“值”，赋给左边用于包含该值的“引用”。
-// 那么上面的x=x，其实就是被翻译成：
-x = GetValue(x)
 
 // 所以，“delete x”归根到底，是在删除一个表达式的、引用类型的结果（Result），而不是在删除 x 表达式，或者这个删除表达式的值（Value）。
+
+//课后练习题
+const homeworkY = {
+    x:"1"
+}
+console.log(delete homeworkX) //true
+console.log(delete 0) //true
+console.log(delete homeworkY) //false
+"use strict";
+console.log(delete homeworkX1) //true
+
+/**
+ * 阿里巴巴要删除合伙人，马云和蔡崇信是永久合伙人，只读，一删除就报错，
+ * 删除一个不存在的合伙人，直接返回正确删除。
+ * 如果删除的不是一个人对象，而是人的弱点（值），直接返回true。无法正确删除。
+ */
+
+ console.log("=========")
+ var homeworkX2 = "123"
+ console.log(delete homeworkX2)
+ console.log(homeworkX2)
+
+var obj = {
+    a:"123",
+    b:{
+        name:"123"
+    }
+}
+
+console.log(delete obj.a)
+console.log(obj)
+
+homeworkX3 = "1234"
+console.log(homeworkX3)
+console.log(delete homeworkX3)
+
 

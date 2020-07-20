@@ -52,7 +52,7 @@ f();
 回到 ECMAScript 6 之前：JavaScript 是允许访问还没有绑定值的var所声明的标识符的。这种标识符后来统一约定称为“变量声明（varDelcs）”，
 而“let/const”则称为“词法声明（lexicalDecls）”。
 JavaScript 环境在创建一个“变量名（varName in varDecls）”后，会为它初始化绑定一个 undefined 值，
-而”词法名字（lexicalNames）”在创建之后就没有这项待遇，所以它们在缺省情况下就是“还没有绑定值”的标识符。
+词法名字（lexicalNames）还没有绑定值”的标识符。
 *／
 ／* NOTE：6 种声明语句中的函数是按 varDecls 的规则声明的；类的内部是处于严格模中，它的名字是按 let 来处理的，而 import 导入的名字则是按 const 的规则来处理的。
 所以，所有的声明本质上只有三种处理模式：var 变量声明、let 变量声明和 const 常量声明。*/
@@ -64,9 +64,7 @@ lRef = rValue
 */
 
 /*
-向一个不存在的变量赋值接下来我要给你介绍的是从 JavaScript 1.0 开始就遗留下来的一个巨坑，
-也就是所谓的“变量泄漏”问题。
-这在早期的 JavaScript 中的确是一个好用的特性：如果你向一个不存在的变量名赋值，那么 JavaScript 会在全局范围内创建它。
+如果你向一个不存在的变量名赋值，那么 JavaScript 会在全局范围内创建它。
 ECMAScript5 开始的严格模式就禁止了这种特性，试图避免用户将变量泄露到全局环境。 
 */
 
@@ -92,7 +90,7 @@ JavaScript 引擎将全局的一些缺省对象、运行期环境的原生对象
   console.log("-------------");
   console.log(delete a);
   console.info(Object.getOwnPropertyDescriptor(global, 'a'));
-  console.info(Object.getOwnPropertyDescriptor(global, 'x'));
+  console.info(Object.getOwnPropertyDescriptor(global, 'x3'));
   console.log( delete x3);
   console.log(a);
   try {
@@ -120,4 +118,9 @@ try {
 
 var obj = {f:function(){return this === obj}}
 console.log((a=obj.f)())
+
+/**
+ * 皇上的儿子，默认为皇子，肚子里就超越一品大臣，而普通人家的孩子就没有官爵。
+ * 大臣们为了躲避牢狱之灾，就提前给不存在的人封了官职，自己官丢了以后，又可以代替那个职位。那个职位必须是异地，而且远看与自己无关。
+ */
  
