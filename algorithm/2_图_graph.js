@@ -39,3 +39,5 @@ graph.addEdge("B","E");
 graph.addEdge("B","F");
 graph.addEdge("E","I");
 document.write(graph.toString())
+
+

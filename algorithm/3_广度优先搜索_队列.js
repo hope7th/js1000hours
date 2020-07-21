@@ -105,3 +105,20 @@ graph.addEdge("B", "F");
 graph.addEdge("E", "I");
 
 graph.bfs(myVertices[0], printNode)
+
+var shortestPathA = graph.BFS(myVertices[0]);
+console.log(shortestPathA);
+var fromVertex = myVertices[0];
+for(var i=1;i<myVertices.length;i++){
+    var toVertex = myVertices[i],
+    path = new Stack();
+    for(var v=toVertex;v!==fromVertex;v=shortestPathA.predecessors[v]){
+        path.push(v);
+    }
+    path.push(fromVertex);
+    var s = path.pop();
+    while(!path.isEmpty()){
+        s +="-"+path.pop();
+    }
+    console.log(s)
+}
