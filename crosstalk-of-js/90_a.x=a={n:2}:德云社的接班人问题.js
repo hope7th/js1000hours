@@ -8,11 +8,8 @@ a.x = a = {
 console.log(a.x); //undefined
 console.log(a.y); //undefined
 console.log(a); //
-
-
+console.log("----------")
 var x = y = 100;
-
-
 /*  
   变量“y”会因为赋值操作而导致 JavaScript 引擎“意外”创建一个全局变量。
  所以，声明语句“var/let/const”的一个关键点在于：语句的关键字 var/let/const 只是用来“声明”变量名 x 的，
@@ -58,17 +55,16 @@ try {
 有一个新的a产生，它覆盖了原始的变量a，它的值是{n:2}；最左侧的“a.x”的计算结果中的“原始的变量a”在引用传递的过程中丢失了，且“a.x”被同时丢弃。
 
 */
-
+console.log("---------");
 var a2 = {n:1};
 Object.freeze(a2);
 
 try {
-    a2.x = a2 = {n2};
+    a2.x = a2 = {n:2};
 }catch(e){
-    console.log("---------");
     console.log("第二次赋值异常")
 }
-
+console.log(a2);
 console.log(a2.n)
 
 
@@ -83,4 +79,11 @@ console.log(ref)
 // 先执行了  a3.x = (a3={n:2}) 的结果，然后再执行了 a3 = {n:3}
 
 
+/**
+ * 德云社的接班人问题，
+ * 郭德纲开始选何云伟当接班人，var a = {n:1};
+ * 后来又想选择曹云金为副接班人 a.x = 
+ * 曹云金出走德云社，郭德纲一气之下选择 郭麒麟接班，a={n:2},曹云金直接丢弃。
+ * 曹云金的接班计划直接丢弃，没有执行。
+ */
 
