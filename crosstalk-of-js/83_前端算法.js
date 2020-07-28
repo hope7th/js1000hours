@@ -10,7 +10,7 @@ function toChineseNum(num) {
         if (str.length > 5) {
             let first = str.slice(-5);
             let second = str.slice(0, str.length - 5);
-            for (let i in second) {
+            for (let i in second)  {
                 res = res + numStr[second[i]] + unitArr[second.length - 1];
             }
 
