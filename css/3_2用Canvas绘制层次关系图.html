@@ -20,10 +20,14 @@
         const dataSource = "https://s5.ssl.qhres.com/static/b0695e2dd30daa64.json";
         (async function () {
             const data = await (await fetch(dataSource)).json();
+            console.log("---------------");
+            console.log("data:", data);
             const regions = d3.hierarchy(data).sum(d => 1).sort((a, b) => b.value - a.value);
             //这行代码没懂是啥意思
             const pack = d3.pack().size([1600, 1600]).padding(3);
             const root = pack(regions);
+            console.log("root:",root)
+            console.log("---------------------");
             const canvas = document.querySelector("canvas");
             const context = canvas.getContext("2d");
             const TAU = 2 * Math.PI;
