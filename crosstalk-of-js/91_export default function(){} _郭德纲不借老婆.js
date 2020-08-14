@@ -126,6 +126,8 @@ function x3() {
 
   console.log(obj.defaultsss.name) //defaultsss
   console.log(obj2.default.name) // ss
+  console.log((function(){}).name) //""
+  console.log((function haha(){}).name) //"haha"
   /**
    * 它并不是导出了一个匿名函数表达式，
    * 而是导出了一个匿名函数定义（Anonymous  Function  Definition）。
@@ -137,4 +139,5 @@ function x3() {
     * 郭德纲很穷的时候，经常向于谦借东西，有时候借个火抽烟，借点钱吃顿饭。
     * 于谦列出可借之物列一个表，export,烟，酒，钱。。。。
     * 后来于谦向郭德纲借东西，郭德纲说：除了老婆随便拿，普通变量，统称为：可借之物，美其名曰：default。列表里只有一个名字。
+    * 但是，他俩的东西都是常量，不可改变的。
     */
