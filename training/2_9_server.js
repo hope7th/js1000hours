@@ -11,10 +11,13 @@ http.createServer((request,response)=>{
         body = Buffer.concat(body).toString();
         console.log("body",body);
         response.writeHead(200, {"Content-Type":"text/html"});
-        response.end("Hello World\n");
+        // response.end("Hello World\n");
+        response.end("<html><body>hello world<body><html>");
+
     })
 }).listen(8088);
 console.log("server started");
+
 
 /**
  * http 协议，文本型协议，里面内容都是字符串

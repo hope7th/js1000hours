@@ -1,5 +1,5 @@
 const net = require("net");
-
+const parser = require("./3_1_parser")
 class ResponseParser{
   constructor(){
     // 状态机
@@ -198,12 +198,13 @@ void async function(){
       ["X-Foo2"]: "costumed"
     },
     body:{
-      name:"wangqi"
+      name:"winter"
     }
   });
   try{
     let response = await request.send();
     console.log('response',response);
+    let dom = parser.paserHTML(response.body);
   }catch(err){
     console.log('client err=>',err)
   }
