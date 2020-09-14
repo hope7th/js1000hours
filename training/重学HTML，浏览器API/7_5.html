@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<div>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="a" style="width: 100%;height: 300px;background: lightblue;">
+        <div id="b" style="width: 100%;height: 200px;background: pink;">
+
+        </div>
+    </div>
+    <script>
+        // 事件 event
+        //每个事件都有，先捕获再冒泡的过程。不传第三个参数默认是冒泡
+        var a = document.getElementById("a");
+        var b = document.getElementById("b");
+        a.addEventListener("click",function(){
+            console.log("a");
+        })
+        b.addEventListener("click",function(){
+            console.log("b");
+        })
+        b.addEventListener("click",function(){
+            console.log("b1");
+        },true);
+        a.addEventListener("click",function(){
+            console.log("a1");
+        },true);
+        b.addEventListener("click",function(){
+            console.log("b3");
+        });
+
+        // a1 b b1 b3 a
+
+        //先触发a1捕获，再依次触发b,b1,b3，最后触发a冒泡。
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        ;
+        (function () {
+            var a;
+        })()
+        /**
+         * 那就是如果上一行代码不写分号，括号会被解释为上一行代码最末的函数调用，加号等运算符也有类似的问题
+         */
+        var b;
+        void
+        function () {
+            var env = {
+                b: 1
+            };
+            b = 2;
+            console.log("In function b:", b);
+            with(env) {
+                var b = 3;
+                console.log("In with b:", b);
+            }
+        }();
+        console.log("Global b:", b);
+
+
+        var iframe = document.createElement("iframe");
+        document.documentElement.appendChild(iframe);
+        iframe.src = "javascript:var b = {};";
+        var b1 = iframe.contentWindow.b;
+        var b2 = {};
+        console.log(typeof b1, typeof b2);
+        console.log(b1 instanceof Object, b2 instanceof Object);
+        // 由于 b1、 b2 由同样的代码“ {} ”在不同的 Realm 中执行
+    </script>
+</body>
+
+</html>
