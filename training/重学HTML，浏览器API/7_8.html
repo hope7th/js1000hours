@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .x::before {
+        content: "额外 额外 额外 额外 额外";
+        background-color: pink;
+    }
+</style>
+
+<body>
+    <script>
+        window.innerHeight;
+        window.innerWidth;
+        window.devicePixelRatio;
+        window.screen.width;
+        window.screen.height;
+        window.screen.availHeight;
+        window.screen.availWidth;
+        window.open('about:blank', '_blank', 'width=100,height=100,left=100,right=100');
+        moveBy(x, y);
+        moveTo(x, y);
+        resizeTo(x, y);
+        resizeBy(x, y);
+        scrollTop;
+        scrollLeft;
+        scrollWidth;
+        scrollHeight;
+        scroll(x, y);
+        scrollBy(x, y);
+        scrollIntoView();
+        window.scrollX;
+        window.scrollY;
+        scroll(x, y);
+        scrollBy(x, y);
+        //layout
+        //getClientRects();
+        //getBoundingClientRect();
+    </script>
+    <button id="open"
+        onclick="window.w=window.open('about:blank','_blank','width=100,height=100,left=100,right=100')">open
+        window</button>
+    <button onclick="w.resizeBy(30,30)">resize</button>
+    <button onclick="w.moveBy(30,30)">move</button>
+    <div style="width: 100px;height: 400px;overflow: scroll;">
+        文字 <span class="x" style="background-color: lightblue;">文字 文字 文字 文字 文字 文字</span>
+    </div>
+    <script>
+        var x = document.getElementsByClassName("x")[0];
+        console.log(x.getClientRects());
+        console.log(x.getBoundingClientRect());
+    </script>
+</body>
+
+</html>

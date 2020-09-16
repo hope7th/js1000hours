@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style title="hello">
+a::before{
+    color: red;
+    content: "hello";
+}
+</style>
+<link rel="stylesheet" title="x" href="data:text/css,p%7Bcolor:blue%7D" >
+<body>
+    <a> world</a>
+    <script>
+        console.log(document.styleSheets)
+        document.styleSheets[0].cssRules[0].style.color = "lightgreen"
+        // 伪元素无法通过dom修改，必须使用CSSStyleRules
+        // CSSStyleRules可以批量修改
+        console.log(getComputedStyle(document.querySelector("a")))
+        console.log(getComputedStyle(document.querySelector("a"),"::before"))
+
+
+        
+    </script>
+</body>
+</html>
+

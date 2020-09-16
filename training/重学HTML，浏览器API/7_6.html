@@ -14,29 +14,63 @@
         <a>3</a>
         <div>4</div>
     </div>
+    <div id="a1">
+        <span>1</span>
+        <p>2</p>
+        <a>3</a>
+        <div>4</div>
+    </div>
+    <div id="a3">
+        <span>1</span>
+        <p>2</p>
+        <a>3</a>
+        <div>4</div>
+    </div>
+    <div id="a2">123 <span style="background-color: pink;">456789</span>0123456789</div>
     <script>
         let element = document.getElementById("a");
-        // function reverseChildren(element) {
-        //     let children = Array.prototype.slice.call(element.childNodes);
-        //     for (let child of children) {
-        //         console.log(child)
-        //         element.removeChild(child);
-        //     }
-        //     // element.innerHTML = "";
-        //     children.reverse();
-        //     for (let child of children) {
-        //         element.appendChild(child);
-        //     }
-        // }
+        let element1 = document.getElementById("a1");
+        let element2 = document.getElementById("a2");
+        let element3 = document.getElementById("a3");
+        function reverseChildren(element) {
+            let children = Array.prototype.slice.call(element.childNodes);
+            for (let child of children) {
+                console.log(child)
+                element.removeChild(child);
+            }
+            // element.innerHTML = "";
+            children.reverse();
+            for (let child of children) {
+                element.appendChild(child);
+            }
+        }
 
-        function reverseChildren(element){
+        function reverseChildren1(element){
             var l = element.childNodes.length;
             while(l-->0){
                 element.appendChild(element.childNodes[l])
             }
-
         }
+        //如果node已经在dom树上，或者在另一颗dom树上，是不需要remove的，直接appenchild
         reverseChildren(element)
+        reverseChildren1(element1)
+
+        let range = new Range();
+        range.setStart(document.getElementById("a2").childNodes[1].childNodes[0],3);
+        range.setEnd(document.getElementById("a2").childNodes[2],3)
+        range.extractContents();
+
+        function reverseChildren2(element){
+            let range = new Range();
+            range.selectNodeContents(element)
+            let fragment = range.extractContents();
+            var l = fragment.childNodes.length;
+            while(l-->0){
+                fragment.appendChild(fragment.childNodes[l]);
+            }
+            element.appendChild(fragment);
+        }
+        reverseChildren2(element3);
     </script>
 </body>
 
