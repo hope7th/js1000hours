@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // JavaScript 有两种源文件，一种叫做脚本，一种叫做模
+        // 脚本是可以由浏览器或者 node 环境引入执行的，而模块只能由 JavaScript 代码用 import 引入执行
+        // 脚本具有主动性的 JavaScript 代码段，是控制宿主完成一定任务的代码；而模块是被动性的 JavaScript 代码段，是等待被调用的库。
+        // 现代浏览器可以支持用 script 标签引入模块或者脚本，如果要引入模块，必须给 script 标签添加 type=“module”。如果引入脚本，则不需要 type。
+
+        // import "mod"; //引入一个模块
+        // import v from "mod";  //把模块默认的导出值放入变量v
+        // 直接 import 一个模块，只是保证了这个模块代码被执行，引用它的模块是无法获得它的任何信息的。
+
+        // import x from "./a.js" 引入模块中导出的默认值。
+        // import {a as x, modify} from "./a.js"; 引入模块中的变量。
+        // import * as x from "./a.js" 把模块中所有的变量以类似对象属性的方式引入。
+
+
+        //预处理
+        // JavaScript 执行前，会对脚本、模块和函数体中的语句进行预处理。
+        // 预处理过程将会提前处理 var、函数声明、class、const 和 let 这些语句，以确定其中变量的意义。
+
+        var a = 1;
+
+        function foo() {
+            console.log(a);
+            if (false) {
+                var a = 2;
+            }
+        }
+        foo();
+
+
+
+        function foo1() {
+            var o = {
+                a: 3
+            }
+            with(o) {
+                var a = 2;
+            }
+            console.log(o);
+            console.log(o.a);
+            console.log(a);
+        }
+
+        foo1();
+
+        // 当执行到var a = 2时，作用域变成了 with 语句内，这时候的 a 被认为访问到了对象 o 的属性 a，
+        // 所以最终执行的结果，我们得到了 2 和 undefined
+
+        // IIFE
+
+        for (var i = 0; i < 20; i++) {
+            void
+
+            function (i) {
+                var div = document.createElement("div");
+                div.innerHTML = i;
+                div.onclick = function () {
+                    console.log(i);
+                }
+                document.body.appendChild(div);
+            }(i);
+        }
+
+
+        for (var i = 0; i < 10; i++) {
+            var div = document.createElement("div");
+            div.innerHTML = i;
+            div.onclick = function () {
+                console.log(i);
+            }
+            document.body.appendChild(div);
+        }
+
+        // function 声明
+        // function 声明表现跟 var 相似，不同之处在于，function 声明不但在作用域中加入变量，还会给它赋值
+        console.log(foo);function foo(){}
+        // function 声明出现在 if 等语句中的情况有点复杂，它仍然作用于脚本、模块和函数体级别，在预处理阶段，仍然会产生变量，它不再被提前赋值：
+        console.log(foo1);if(true) {function foo1(){}}
+    </script>
+</body>
+
+</html>
