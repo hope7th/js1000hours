@@ -83,9 +83,42 @@
 
         // function 声明
         // function 声明表现跟 var 相似，不同之处在于，function 声明不但在作用域中加入变量，还会给它赋值
-        console.log(foo);function foo(){}
+        console.log(foo);
+
+        function foo() {}
         // function 声明出现在 if 等语句中的情况有点复杂，它仍然作用于脚本、模块和函数体级别，在预处理阶段，仍然会产生变量，它不再被提前赋值：
-        console.log(foo1);if(true) {function foo1(){}}
+        console.log(foo1);
+        if (true) {
+            function foo1() {}
+        }
+
+
+        // class 声明也是会被预处理的，它会在作用域中创建变量，并且要求访问它时抛出错误。
+
+        //class 的声明作用不会穿透 if 等语句结构，所以只有写在全局环境才会有声明作用
+        try {
+            var c = 1;
+
+            function foo() {
+                console.log(c);
+                class c {}
+            }
+            foo();
+        } catch (e) {
+            console.log(e)
+        }
+
+        //指令序言机制
+
+        "use strict";
+        //严格模式没起作用，打印出来还是windows啊。
+
+        // "use strict"没有出现在最前，所以不是指令序言。
+        function f() {
+            console.log(this);
+        };
+        f.call(null);
+
     </script>
 </body>
 
