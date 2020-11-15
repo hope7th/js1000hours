@@ -1,0 +1,27 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en" oncontextmenu="event.stopPropagation();event.preventDefault()">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- <script src="./gesture.js"></script> -->
+<!-- <script>
+    document.oncontextmenu = function () {
+        event.preventDefault();
+    }
+</script> -->
+
+<body>
+    <!-- 避免右键弹出菜单 -->
+</body>
+<script type="module">
+    import {enableGesture} from "./gesture.js";
+    enableGesture(document.documentElement);
+    document.documentElement.addEventListener("tap",()=>{
+        console.log("tap event trigger");
+    })
+</script>
+
+</html>
