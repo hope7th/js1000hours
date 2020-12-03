@@ -1,0 +1,51 @@
+<!-- 凡是替换型元素，都是使用 src 属性来引用文件的，而我们之前的课程中已经讲过，链接型元素是使用 href 标签的。 -->
+<script type="text/javascript">
+    console.log("hello world");
+</script>
+
+<img src='data:image/svg+xml;charset=utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)"/></svg>'/>
+
+<!-- 果一定不想要引入独立文件，可以使用 data uri， -->
+<img src='data:image/svg+xml;charset=utf8,<svg width="600" height="400" version="1.1"
+xmlns="http://www.w3.org/2000/svg"><ellipse cx="300" cy="150" rx="200" ry="80"
+style="fill:rgb(200,100,50);
+stroke:rgb(0,0,100);stroke-width:2"/></svg>' width="100"/>
+
+
+<picture>
+    <source srcset="image-wide.png" media="(min-width: 600px)">
+    <img src="image-narrow.png">
+  </picture>
+
+
+
+<video controls="controls" src="movie.ogg">
+</video>
+
+
+<!-- 在的 video 标签可以使用 source 标签来指定接入多个视频源 -->
+<video controls="controls" >
+    <source src="movie.webm" type="video/webm" >
+    <source src="movie.ogg" type="video/ogg" >
+    <source src="movie.mp4" type="video/mp4">
+    You browser does not support video.
+  </video>
+
+  <!-- video 中还支持一种标签：track。
+  subtitles：就是字幕了，不一定是翻译，也可能是补充性说明。
+  captions：报幕内容，可能包含演职员表等元信息，适合听障人士或者没有打开声音的人了解音频内容。
+  descriptions：视频描述信息，适合视障人士或者没有视频播放功能的终端打开视频时了解视频内容。
+  chapters：用于浏览器视频内容。
+  metadata：给代码提供的元信息，对普通用户不可见。 -->
+
+
+<audio controls>
+    <source src="song.mp3" type="audio/mpeg">
+    <source src="song.ogg" type="audio/ogg">
+    <p>You browser does not support audio.</p>
+  </audio>
+
+  <!-- 最后我们来讲一下 iframe，这个标签能够嵌入一个完整的网页
+  不过，在移动端，iframe 受到了相当多的限制，它无法指定大小，里面的内容会被完全平铺到父级页面上。
+  同时很多网页也会通过 http 协议头禁止自己被放入 iframe 中。iframe 标签也是各种安全问题的重灾区。
+  opener、window.name、甚至 css 的 opacity 都是黑客可以利用的漏洞。 -->

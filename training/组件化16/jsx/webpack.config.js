@@ -9,7 +9,6 @@ module.exports = {
                     loader:"babel-loader",
                     options:{
                         presets:["@babel/preset-env"],
-                        // plugins:["@babel/plugin-transform-react-jsx"], react的配置
                         plugins:[["@babel/plugin-transform-react-jsx",{pragma:"createElement"}]]
                     }
                 }

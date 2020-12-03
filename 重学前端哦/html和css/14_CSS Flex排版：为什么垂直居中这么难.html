@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent {
+            display: flex;
+            width: 300px;
+            height: 300px;
+            outline: solid 1px;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        #child {
+            width: 100px;
+            height: 100px;
+            outline: solid 1px;
+        }
+
+        /* .parent {
+            display: flex;
+            width: 300px;
+            justify-content: center;
+            align-content: center;
+            align-items: stretch;
+        }
+
+        .child {
+            width: 100px;
+            outline: solid 1px;
+        } */
+
+        .parent {
+            display: flex;
+            width: 300px;
+            height: 200px;
+            background-color: pink;
+        }
+
+        .child1 {
+            width: 100px;
+            background-color: lightblue;
+        }
+
+        .child2 {
+            width: 100px;
+            flex: 1;
+            outline: solid 1px;
+        }
+
+        /* 两列等高 */
+        .parent2 {
+            display: flex;
+            width: 300px;
+            justify-content: center;
+            align-content: center;
+            align-items: stretch;
+        }
+
+        .child2 {
+            width: 100px;
+            outline: solid 1px;
+        }
+
+
+        .parent3 {
+            display: flex;
+            width: 300px;
+            height: 200px;
+            background-color: pink;
+        }
+
+        .child3 {
+            width: 100px;
+            background-color: lightblue;
+        }
+
+        .child4 {
+            width: 100px;
+            flex: 1;
+            outline: solid 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Flex 排版的核心是 display:flex 和 flex 属性，它们配合使用 -->
+    <!-- 思路是创建一个只有一行的 flexbox，然后用 align-items:center; 
+    和 align-content:center; 来保证行位于容器中，元素位于行中。 -->
+    <div id="parent">
+        <div id="child">
+        </div>
+    </div>
+    <!-- 两列等高 -->
+    <!-- 然后用 stretch 属性让每个元素高度都等于行高。 -->
+    <div class="parent2">
+        <div class="child2" style="height: 300px;"></div>
+        <div class="child2"></div>
+    </div>
+    <br />
+    <div class=" parent2">
+        <div class="child2"></div>
+        <div class="child2" style="height:100px;"></div>
+    </div>
+    <!-- 自适应宽 -->
+    <div class="parent3">
+        <div class="child3"></div>
+        <div class="child4"></div>
+    </div>
+</body>
+
+</html>

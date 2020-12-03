@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes mykf {
+            from {
+                top: 0;
+                transition: top ease
+            }
+
+            /* 50% {
+                top: 30px;
+                transition: top ease-in
+            }
+
+            75% {
+                top: 10px;
+                transition: top ease-out */
+            /* } */
+
+            to {
+                top: 0;
+                transition: top linear
+            }
+        }
+
+
+        div {
+            animation: mykf 5s infinite;
+            width: 100px;
+            height: 100px;
+            background: pink;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+    </div>
+</body>
+
+</html>

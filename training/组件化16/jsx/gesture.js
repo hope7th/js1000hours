@@ -15,7 +15,7 @@ export class Dispatcher{
             event[name] = properties[name];
         }
         this.element.dispatchEvent(event);
-        console.log(event);
+        //console.log(event);
     }
 }
 
@@ -110,7 +110,7 @@ export class Recognizer {
         this.dispatcher = dispatcher;
     };
     start(point, context) {
-        console.log("start", point.clientX, point.clientY);
+        //console.log("start", point.clientX, point.clientY);
         context.startX = point.clientX;
         context.startY = point.clientY;
         context.points = [{
@@ -122,7 +122,7 @@ export class Recognizer {
         context.isTap = true;
         context.isPress = false
         context.handler = setTimeout(() => {
-            console.log("press");
+            //console.log("press");
             this.dispatcher.dispatch("press", {});
             context.isPan = false;
             context.isTap = false;
@@ -137,7 +137,7 @@ export class Recognizer {
             context.isTap = false;
             context.isPress = false;
             context.isVertical = Math.abs(dx) < Math.abs(dy)
-            console.log("panstart");
+            //console.log("panstart");
             this.dispatcher.dispatch("panstart", {
                 startX: context.startX,
                 startY: context.startY,
@@ -148,8 +148,8 @@ export class Recognizer {
             clearTimeout(context.handler);
         }
         if (context.isPan) {
-            console.log(dx, dy);
-            console.log("pan");
+            //console.log(dx, dy);
+            //console.log("pan");
             context.isVertical =
                 this.dispatcher.dispatch("pan", {
                     startX: context.startX,
@@ -165,12 +165,12 @@ export class Recognizer {
             x: point.clientX,
             y: point.clientY
         })
-        console.log("move", point.clientX, point.clientY)
+        //console.log("move", point.clientX, point.clientY)
     }
     end(point, context) {
-        console.log("end", point.clientX, point.clientY)
+        //console.log("end", point.clientX, point.clientY)
         if (context.isTap) {
-            console.log("tap");
+            //console.log("tap");
             this.dispatcher.dispatch("tap", {})
             clearTimeout(context.handler);
             // 不清除会立即触发
@@ -178,7 +178,7 @@ export class Recognizer {
 
         if (context.isPress) {
             this.dispatcher.dispatch("pressend", {})
-            console.log("pressend");
+            //console.log("pressend");
         }
         let d, v;
         context.points = context.points.filter(point => Date.now() - point.t < 500)
@@ -190,13 +190,13 @@ export class Recognizer {
             v = d / (Date.now() - context.points[0].t);
         }
         if (v > 1.5) {
-            console.log("flick");
+            //console.log("flick");
             context.isFlick = true;
         } else {
             context.isFlick = false;
         }
         if (context.isPan) {
-            console.log("panend");
+            //console.log("panend");
             this.dispatcher.dispatch("panend", {
                 startX: context.startX,
                 startY: context.startY,
@@ -210,7 +210,7 @@ export class Recognizer {
     }
     cancel(point, context) {
         clearTimeout(context.handler);
-        console.log("cancel", point.clientX, point.clientY);
+        //console.log("cancel", point.clientX, point.clientY);
         this.dispatcher.dispatch("cancel", {});
     }
 

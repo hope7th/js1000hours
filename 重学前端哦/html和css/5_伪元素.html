@@ -7,9 +7,37 @@
     <title>Document</title>
 </head>
 <style>
-    .c,.a>.b.d{
+    .c,
+    .a>.b.d {}
 
+    p::first-letter {
+        text-transform: uppercase;
+        color: aqua;
+        font-size: 2em;
+        float: left;
     }
+
+    p::first-line {
+        text-transform: uppercase;
+    }
+
+    div>p#a {
+        color: yellowgreen;
+    }
+
+    div>span#a1 {
+        color: red;
+    }
+
+    div::first-line {
+        color: crimson;
+    }
+    p.special::before {
+        display: block;
+        /* content: "pseudo! "; */
+        content:counter(chapno, upper-roman) "";
+    }
+
     /* 例子中的“ .b.d ”，表示选中的元素必须同时具有 b 和 d 两个 class。 */
     /* 
          选择器列表是用逗号分隔的复杂选择器序列；
@@ -35,6 +63,28 @@
 </style>
 
 <body>
+
+    <p>this is a somewhat long HTML
+        paragraph that will be broken into several
+        lines. The first line will be identified
+        by a fictional tag sequence. The other lines
+        will be treated as ordinary lines in the
+        paragraph.</p>
+    <div>
+        <p id="a">First paragraph</p>
+        <p>Second paragraph</p>
+        <p class="special">I'm real element</p>
+        <p class="special">I'm real element</p>
+        <p class="special">I'm real element</p>
+        <p class="special">I'm real element</p>
+        <p class="special">I'm real element</p>
+        <p class="special">I'm real element</p>
+    </div>
+
+    <div>
+        <span id="a1">First paragraph</span><br />
+        <span>Second paragraph</span>
+    </div>
 </body>
 
 </html>

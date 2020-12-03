@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="">
+
+<link rel="canonical" href="...">
+<!-- 这个标签提示页面它的主 URL，在网站中常常有多个 URL 指向同一页面的情况 -->
+
+<link rel="alternate" href="rss.xml" type="application/rss+xml" title="RSS">
+<!-- 这个所谓的变形可能是当前页面内容的不同格式、不同语言或者为不同的设备设计的版本 -->
+
+<!-- prev 型 link 和 next 型 link -->
+<!-- 在互联网应用中，很多网页都属于一个序列，比如分页浏览的场景，或者图片展示的场景，每个网页是序列中的一个项。 -->
+
+<!-- icon 型 link -->
+<link rel="shortcut icon" type="images/x-icon"  href="favicon.ico">
+
+<!-- 预处理类 link
+dns-prefetch 型 link 提前对一个域名做 dns 查询，这样的 link 里面的 href 实际上只有域名有意义。
+preconnect 型 link 提前对一个服务器建立 tcp 连接。
+refetch 型 link 提前取 href 指定的 url 的内容。
+preload 型 link 提前加载 href 指定的 url。
+prerender 型 link 提前渲染 href 指定的 url。 -->
+
+<!-- modulepreload 型的 link 
+modulepreload 型 link 的作用是预先加载一个 JavaScript 的模块。这可以保证 JS 模块不必等到执行时才加载。 -->
+
+<link rel="modulepreload" href="app.js">
+<link rel="modulepreload" href="helpers.js">
+<link rel="modulepreload" href="irc.js">
+<link rel="modulepreload" href="fog-machine.js">
+<script type="module" src="app.js">
+
+
+
+// pingback 型 link

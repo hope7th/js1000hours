@@ -22,6 +22,7 @@ class Carousel extends Component {
             this.root.appendChild(child);
         }
         let position = 0;
+        //mousedown里面套mousemove和mouseup,这段代码背会，因为永远不会改变刘备三兄弟
         this.root.addEventListener("mousedown", event => {
             console.log("mousedown");
             let children = this.root.children;
@@ -29,7 +30,14 @@ class Carousel extends Component {
                 startY = event.clientY;
             let move = event => {
                 let x = event.clientX - startX;
+                // debugger
+                // 过程代码
+                // for(let child of children){
+                //     child.style.transition = "none";
+                //     child.style.transform = `translateX(${-position*500+x}px)`
+                // }
                 let current = position - ((x - x % 500) / 500);
+                //起到整数的效果，非常聪明，大爷的，我怎么没想到
                 for (let offset of [-1, 0, 1]) {
                     let pos = current + offset;
                     pos = (pos + children.length) % children.length;
@@ -42,6 +50,13 @@ class Carousel extends Component {
             let up = event => {
                 let x = event.clientX - startX;
                 position = position - Math.round(x / 500);
+
+                //过程代码
+                // for(let child of children){
+                //     child.style.transition = "";
+                //     child.style.transform = `translateX(${-position*500}px)`;
+                // }
+
                 for (let offset of [-1, -Math.sign(Math.round(x / 500) - x + 250 * Math.sign(x))]) {
                     let pos = position + offset;
                     pos = (pos + children.length) % children.length;
@@ -55,25 +70,35 @@ class Carousel extends Component {
             document.addEventListener("mouseup", up)
         });
         let currentIndex = 0;
-        setInterval(() => {
-            let children = this.root.children;
-            let nextIndex = (currentIndex + 1) % children.length;
-            let current = children[currentIndex];
-            let next = children[nextIndex];
-            next.style.transform = "none"
-            next.style.transform = `translateX(${100-nextIndex*100}%)`
-            setTimeout(() => {
-                next.style.transform = ""
-                current.style.transform = `translateX(${-100-currentIndex*100}%)`
-                next.style.transform = `translateX(${-nextIndex*100}%)`
-                currentIndex = nextIndex;
-            }, 16)
+
+        //自动轮播的代码
+        // setInterval(() => {
+        //     /*0,1,2,3
+        //     滑倒可见区域分别对应的代码是
+        //     translateX(${-0*100}%),translateX(${-1*100}%),translateX(${-2*100}%),translateX(${-3*100}%)
+        //     从可见区域滑走分别对应的代码是
+        //      translateX(${-1*100}%),translateX(${-2*100}%),translateX(${-3*100}%),translateX(${-4*100}%)
+        //     */
+        //    //轮播非常巧妙的写法
+        //     let children = this.root.children;
+        //     let nextIndex = (currentIndex + 1) % children.length;
+        //     let current = children[currentIndex];
+        //     let next = children[nextIndex];
+        //     next.style.transform = "none"
+        //     next.style.transform = `translateX(${100-nextIndex*100}%)`
+        //     setTimeout(() => {
+        //         next.style.transform = ""
+        //         current.style.transform = `translateX(${-100-currentIndex*100}%)`
+        //         next.style.transform = `translateX(${-nextIndex*100}%)`
+        //         currentIndex = nextIndex;
+        //     }, 16)
+        //     //16毫秒是浏览器一帧的时间
 
 
-            // for(let child of children){
-            //     child.style.transform = `translateX(-${current*100}%）`;
-            // }
-        }, 3000)
+        //     // for(let child of children){
+        //     //     child.style.transform = `translateX(-${current*100}%）`;
+        //     // }
+        // }, 3000)
         return this.root
     }
     mountTo(parent) {
@@ -91,5 +116,5 @@ let d = [
 
 
 // document.body.appendChild(a)
-let a = <Carousel src ={d} />
+let a = <Carousel src ={d} id="carousel" />
 a.mountTo(document.body);
