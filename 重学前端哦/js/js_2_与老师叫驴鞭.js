@@ -15,8 +15,9 @@ var o = {
 };
 o.b = 2;
 console.log(Object.getOwnPropertyDescriptor(o, "a"));
+// { value: 1, writable: true, enumerable: true, configurable: true }
 console.log(Object.getOwnPropertyDescriptor(o, "b"));
-
+// { value: 2, writable: true, enumerable: true, configurable: true }
 
 var o1 = {
     a: 1
@@ -33,8 +34,14 @@ console.log(Object.getOwnPropertyDescriptor(o1, "b")); // {value: 2, writable: f
 o1.b = 3; //赋值失败哦。
 console.log(o1.b); // 2
 console.log("------数据属性end--------");
-var o2  = { b:"ss",a:"sss",get a(){return 1},}
-console.log(o2.a); 
+var o2 = {
+    b: "ss",
+    a: "sss",
+    get a() {
+        return 1
+    },
+}
+console.log(o2.a);
 console.log(Object.getOwnPropertyDescriptor(o2, "a"));
 /**
  * { get: [Function: get a],
@@ -43,10 +50,9 @@ console.log(Object.getOwnPropertyDescriptor(o2, "a"));
   configurable: true }
  */
 console.log(Object.getOwnPropertyDescriptor(o2, "b"));
+// { value: 'ss', writable: true, enumerable: true, configurable: true }
 console.log("------访问器属性end--------");
 /**
  * 与老师出生那天，跑去办身份证，这孩子生辰八字定了，不能改了。这是数据属性。
  * 叫啥名啊：于谦，难听死了，叫驴鞭吧。访问器属性，名字改了。
  */
-
-

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    解析代码
+    1. 词（token）是如何被拆分的
+        <p “标签开始”的开始；
+        class=“a” 属性；
+        >  “标签开始”的结束；
+        text text text 文本；
+        </p> 标签结束。
+        浏览器工程师要想实现把字符流解析成词（token），最常见的方案就是使用状态机。
+    2. 状态机
+      "../images/2.png"
+
+
+    构建 DOM 树
+        栈顶元素就是当前节点；
+        遇到属性，就添加到当前节点；
+        遇到文本节点，如果当前节点是文本节点，则跟文本节点合并，否则入栈成为当前节点的子节点；
+        遇到注释节点，作为当前节点的子节点；
+        遇到 tag start 就入栈一个节点，当前节点就是这个节点的父节点；
+        遇到 tag end 就出栈一个节点（还可以检查是否匹配）。
+</body>
+</html>

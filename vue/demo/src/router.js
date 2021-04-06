@@ -31,7 +31,7 @@ export default new Router({
       component: () => import("./view/1.4")
     },
     {
-      path: "/current/details.html",
+      path: "/1.5",
       name: "计算属性和侦听器",
       component: () => import("./view/1.5")
     },
@@ -49,6 +49,11 @@ export default new Router({
       path: "/1.8",
       name: "provie/inject",
       component: () => import("./view/1.8")
+    },
+    {
+      path: "/1.9",
+      name: "如何优雅的获取跨层级组件(拒绝递归)",
+      component: () => import("./view/1.9")
     }
   ]
 })

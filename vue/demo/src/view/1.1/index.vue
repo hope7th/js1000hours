@@ -38,14 +38,14 @@
     </div>
 </template>
 <script>
-import index from "./index.js"
+    import index from "./index.js"
     import Props from "./Props"
     import Event from "./Event"
     import Slot from "./Slot"
     import BigProps from "./BigProps";
     export default {
         name: 'index',
-        mixins:[index],
+        mixins: [index],
         components: {
             BigProps,
             Props,
@@ -57,11 +57,11 @@ import index from "./index.js"
                 name: "",
                 type: "success",
                 bigPropsName: "Hello world!",
-                msg:"cover mixin" 
+                msg: "cover mixin"
                 //命名冲突时，覆盖混入
             }
         },
-        mounted(){
+        mounted() {
             this.testMessage()
         },
         methods: {

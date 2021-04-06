@@ -1,6 +1,5 @@
 import React from "react"
 import CommentList from "./CommentList"
-import CommentFrom from "./CommentForm"
 import withTimer from "../c06/withTimer"
 import "./CommentBox.css"
 import CommentForm from "./CommentForm"

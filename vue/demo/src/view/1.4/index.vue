@@ -18,13 +18,13 @@
       PropsAndData
     },
     data(){
-      this.name = name
+      this.name = name//没有做响应式，没有触发组件更新
       return {
         name1:'',
         info1:{
           number:''
         },
-        info:{},
+        info:{},//dic里面的number没有做响应式，没有触发组件更新
         list:[]
       }
     },

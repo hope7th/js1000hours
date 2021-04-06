@@ -2,6 +2,11 @@ var x=y=100;
 console.log(x);
 console.log(y);
 
+console.log(delete x)//false
+console.log(delete y) //true
+
+console.log("-------以下开始")
+
 // 这行代码可能是 JavaScript 中最复杂和最容易错用的表达式了。
 
 // JavaScript 中一共只有六条声明用的语句
@@ -123,4 +128,6 @@ console.log((a=obj.f)())
  * 皇上的儿子，默认为皇子，肚子里就超越一品大臣，而普通人家的孩子就没有官爵。
  * 大臣们为了躲避牢狱之灾，就提前给不存在的人封了官职，自己官丢了以后，又可以代替那个职位。那个职位必须是异地，而且远看与自己无关。
  */
+
+
  

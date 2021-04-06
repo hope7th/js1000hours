@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <p>这行脚本代码写在div后面会闪一下</p>
+    <div id="app">{{message}} {{message+message1}}
+        <div :id="message"></div>
+        <todo-list>
+            <todo-item @delete="handleDelete" v-for="item in list" :title="item.title" :del="item.del">
+                <template v-slot:pre-icon="{value}">
+                    <span>前置图标{{value}}</span>、
+                </template>
+                //作用域插槽，本质是返回组件的函数，可带参数
+                <!-- <template v-slot:suf-icon>
+                    <span>后置图标</span>
+                </template> -->
+                <!-- <span slot="pre-icon">前置图标</span>、
+                <span slot="suf-icon">后置图标</span> -->
+            </todo-item>
+        </todo-list>
+    </div>
+    <script>
+        Vue.component("todo-item", {
+            data: function () {
+                return {
+                    value: Math.random()
+                }
+            },
+            methods: {
+                handleClick() {
+                    console.log("点击删除事件");
+                    this.$emit("delete", this.title)
+                }
+            },
+            props: {
+                title: String,
+                del: {
+                    type: Boolean,
+                    default: false
+                }
+            },
+            template: `<li>
+                <slot name="pre-icon" :value="value"></slot>
+                <span v-if="!del">{{title}}</span>
+                <span v-else style="text-decoration: line-through;">{{title}}</span>
+                <slot name="suf-icon">😊</slot>
+                <button v-show="del" @click="handleClick" >删除</button>
+            </li>`
+        });
+        Vue.component("todo-list", {
+            template: `<ul><slot></slot></ul>`,
+            data: function () {
+                return {
+                    list: [{
+                            title: "课程1",
+                            del: false
+                        },
+                        {
+                            title: "课程2",
+                            del: true
+                        }
+                    ]
+                }
+            }
+        });
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                message: "hello world ",
+                message1: "hellovue",
+                list: [{
+                        title: "课程1",
+                        del: false
+                    },
+                    {
+                        title: "课程2",
+                        del: true
+                    }
+                ]
+            },
+            methods: {
+                handleDelete(val) {
+                    console.log("handleDelete", val);
+                }
+            }
+        })
+        setTimeout(function () {
+            vm.message1 = "hello vue3 ";
+        }, 5000)
+    </script>
+</body>
+
+</html>

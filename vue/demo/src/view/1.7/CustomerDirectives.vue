@@ -40,6 +40,7 @@
           console.log("inserted", el, binding);
         },
         update(el,binding){
+          console.log(Math.floor(Math.random()*0xffffff));
           console.log("update");
         },
         componentUpdated(el,binding){

@@ -28,7 +28,7 @@
     methods:{
       handleBChange(){
         this.b = "vue" + Date.now();
-        console.log("data.b 发生变化，但没有触发updated")
+        console.log("data.b 发生变化，但没有触发updated。因为没有用到")
       }
     }
   }

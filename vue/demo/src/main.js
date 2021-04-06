@@ -8,7 +8,7 @@ import "ant-design-vue/dist/antd.css";
 Vue.config.productionTip = false
 
 Vue.use(antd);
-Vue.use(ref, { name: "ant-ref" });
+Vue.use(ref, { name: "v-ant-ref" });
 
 new Vue({
   store,

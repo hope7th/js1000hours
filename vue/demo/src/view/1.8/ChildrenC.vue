@@ -13,6 +13,13 @@
     components:{
       ChildrenE,
       ChildrenF
+    },
+    provide(){
+      return {
+        theme:{
+          color:"green"
+        }
+      }
     }
 
   }

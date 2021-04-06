@@ -9,29 +9,35 @@
 </template>
 
 <script>
-  import Vue from "vue";
   import ChildrenB from './ChildrenB'
   import ChildrenC from './ChildrenC'
   import ChildrenD from './ChildrenD'
   export default {
     name: 'ChildrenA_a',
     components: {ChildrenC, ChildrenB,ChildrenD},
+    // provide(){
+    //   return {
+    //     theme:{
+    //       color:this.color
+    //     }
+    //   }
+    // },
     provide(){
-      this.theme = Vue.observable(
-        {
-          color:"blue"
-        }
-      );
       return {
-        theme:this.theme
+        theme:this
+      }
+    },
+    data(){
+      return {
+        color:"blue"
       }
     },
     methods:{
       changeColor(color){
         if (color){
-          this.theme.color = color;
+          this.color = color;
         } else {
-          this.theme.color = this.theme.color==="blue"?"red":"blue"
+          this.color = this.color==="blue"?"red":"blue"
         }
       }
     }

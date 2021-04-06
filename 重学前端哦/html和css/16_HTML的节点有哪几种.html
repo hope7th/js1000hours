@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=DOM API 介绍, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    DOM API 介绍
+    DOM API 大致会包含 4 个部分。
+        节点：DOM 树形结构中的节点相关 API。
+        事件：触发和监听事件相关 API。
+        Range：操作文字范围相关 API。
+        遍历：遍历 DOM 需要的 API。
+    
+    
+         
+    
+    
+    
+        
+    Node Element：元素型节点，跟标签相对应 HTMLElement HTMLAnchorElement
+                                                   HTMLAppletElement
+                                                   HTMLAreaElement
+                                                   HTMLAudioElement
+                                                   HTMLBaseElement
+                                                   HTMLBodyElement
+                                        SVGElement SVGAElement
+                                                   SVGAltGlyphElement
+
+         Document：文档根节点
+         CharacterData：字符数据  Text:文本节点
+                                Comment:注释
+                                ProcesssignInstrution:处理信息
+         DocunmentFragment：文档片段
+         DocunmentType:文档类型
+
+         
+
+Element: <tagname>...</tagname>
+Text: text
+Comment: <!-- comments -->
+DocumentType: <!Doctype html>
+ProcessingInstruction: <?a 1?>
+
+
+Node
+根据相对位置获取元素
+parentNode
+childNodes
+firstChild
+lastChild     
+nextSibling
+previousSibling
+
+提供了操作 DOM 树的 API
+appendChild
+insertBefore
+removeChild
+replaceChild
+
+compareDocumentPosition 是一个用于比较两个节点中关系的函数。
+contains 检查一个节点是否包含另一个节点的函数。
+isEqualNode 检查两个节点是否完全相同。
+isSameNode 检查两个节点是否是同一个节点，实际上在 JavaScript 中可以用“===”。
+cloneNode 复制一个节点，如果传入参数 true，则会连同子元素做深拷贝。
+        
+DOM 标准规定了节点必须从文档的 create 方法创建出来
+createElement
+createTextNode
+createCDATASection
+createComment
+createProcessingInstruction
+createDocumentFragment
+createDocumentType
+
+
+Element 与 Attribute
+getAttribute
+setAttribute
+removeAttribute
+hasAttribute
+
+getAttributeNode
+setAttributeNode
+
+
+
+
+<script>
+
+var collection = document.getElementsByClassName('winter');
+console.log(collection.length);
+var winter = document.createElement('div');
+winter.setAttribute('class', 'winter')
+document.documentElement.appendChild(winter)
+console.log(collection.length);
+
+var iterator = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_COMMENT, null, false);
+var node;
+while(node = iterator.nextNode()){
+    console.log("--------")
+     console.log(node);
+}
+
+
+
+var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, null, false)
+var node;
+while(node = walker.nextNode())
+{
+    if(node.tagName === "p")
+        node.nextSibling();
+    console.log("node----------")  
+    console.log(node);
+}
+</script>
+</body>
+</html>

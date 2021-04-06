@@ -1,0 +1,5 @@
+{
+    "presets": ["@babel/preset-env"],
+    "plugins": ["istanbul"]
+    //忘了第二行代码，Uncovered Line瞬间没了？？？
+}

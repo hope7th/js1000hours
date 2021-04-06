@@ -1,6 +1,6 @@
 <template>
     <div id="nav">
-        <template v-for="i in 8">
+        <template v-for="i in 9">
             <div :key="i">
                 <router-link :to="`/1.${i}`">{{ `1.${i}` }}章节</router-link>
             </div>
