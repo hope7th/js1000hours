@@ -82,21 +82,21 @@ export function Stack() {
 }
 
 export function Graph(){
-    var vertices = [];
-    var adjList = new Dictionary();
+    this.vertices = [];
+    this.adjList = new Dictionary();
     this.addVertex = function(v){
-        vertices.push(v);
-        adjList.set(v,[]);
+        this.vertices.push(v);
+        this.adjList.set(v,[]);
     };
     this.addEdge = function(v,w){
-        adjList.get(v).push(w);
-        adjList.get(w).push(v);
+        this.adjList.get(v).push(w);
+        this.adjList.get(w).push(v);
     };
     this.toString = function(){
         var s = '';
-        for(var i=0;i<vertices.length;i++){
+        for(var i=0;i<this.vertices.length;i++){
             s += vertices[i]+"->";
-            var neighbors = adjList.get(vertices[i]);
+            var neighbors = this.adjList.get(vertices[i]);
             for(var j=0;j<neighbors.length;j++){
                 s+=neighbors[i] + ""
             }
