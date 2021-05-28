@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Vue.js 2.x 中，Watcher</p>
+    <p>组件在 render 的时候会访问模板中的数据，触发 getter 把 render watcher 作为依赖收集</p>
+    <p>我对这些数据修改的时候，会触发 setter，通知 render watcher 更新</p>
+    <p>Object.defineProperty API 的一些缺点：不能监听对象属性新增和删除；初始化阶段递归执行 Object.defineProperty 带来的性能负担。</p>
+    <textarea style="width: 500px;height: 150px;">
+        export default {
+            created() {
+                this.msg = 'msg not reactive'
+            },
+            methods: {
+                random() {
+                    this.msg = Math.random()
+                }
+            }
+        }
+    </textarea>
+    </script>
+    <p> created 中定义的 this.msg 并不是响应式对象，所以 Vue.js 内部不会对它做额外的处理。而 data 中定义的数据，Vue.js 内部在组件初始化的过程中会把它变成响应式</p>
+    <img src="./5_0.png" style="width: 500px;" />
+    <p>Vue.js 3.0 为了解决 Object.defineProperty 的这些缺陷，使用 Proxy API 重写了响应式部分，并独立维护和发布整个 reactivity 库，</p>
+    <p> Vue.js 3.0 构建组件时，你可以不依赖于 Options API，而使用 Composition API 去编写</p>
+    <textarea style="width: 500px;height: 150px;">
+        <template>
+            <div>
+              <p>{{ state.msg }}</p>
+              <button @click="random">Random msg</button>
+            </div>
+          </template>
+          <script>
+            import { reactive } from 'vue'
+            export default {
+              setup() {
+                const state = reactive({
+                  msg: 'msg reactive'
+                })
+                const random = function() {
+                  state.msg = Math.random()
+                }
+                return {
+                  random,
+                  state
+                }
+              }
+            }
+          </script>
+    </textarea>
+    <p> reactive API，它可以把一个对象数据变成响应式。</p>
+    <textarea style="width: 500px;height: 150px;">
+        function reactive (target) {
+            // 如果尝试把一个 readonly proxy 变成响应式，直接返回这个 readonly proxy
+           if (target && target.__v_isReadonly) {
+              return target
+           } 
+           return createReactiveObject(target, false, mutableHandlers, mutableCollectionHandlers)
+         }
+         function createReactiveObject(target, isReadonly, baseHandlers, collectionHandlers) {
+           if (!isObject(target)) {
+             // 目标必须是对象或数组类型
+             if ((process.env.NODE_ENV !== 'production')) {
+               console.warn(`value cannot be made reactive: ${String(target)}`)
+             }
+             return target
+           }
+           if (target.__v_raw && !(isReadonly && target.__v_isReactive)) {
+             // target 已经是 Proxy 对象，直接返回
+             // 有个例外，如果是 readonly 作用于一个响应式对象，则继续
+             return target
+           }
+           if (hasOwn(target, isReadonly ? "__v_readonly" /* readonly */ : "__v_reactive" /* reactive */)) {
+             // target 已经有对应的 Proxy 了
+             return isReadonly ? target.__v_readonly : target.__v_reactive
+           }
+           // 只有在白名单里的数据类型才能变成响应式
+           if (!canObserve(target)) {
+             return target
+           }
+           // 利用 Proxy 创建响应式
+           const observed = new Proxy(target, collectionTypes.has(target.constructor) ? collectionHandlers : baseHandlers)
+           // 给原始数据打个标识，说明它已经变成响应式，并且有对应的 Proxy 了
+           def(target, isReadonly ? "__v_readonly" /* readonly */ : "__v_reactive" /* reactive */, observed)
+           return observed
+         }
+    </textarea>
+    <p>createReactiveObject 函数主要做了以下几件事情。</p>
+    <p>1.函数首先判断 target 是不是数组或者对象类型，如果不是则直接返回。所以原始数据 target 必须是对象或者数组。</p>
+    <p>2.如果对一个已经是响应式的对象再次执行 reactive，还应该返回这个响应式对象，举个例子：</p>
+    <textarea style="width: 500px;height: 100px;">
+        import { reactive } from 'vue'
+        const original = { foo: 1 }
+        const observed = reactive(original)
+        const observed2 = reactive(observed)
+        observed === observed2 //true
+    </textarea>
+    <p>reactive 函数会通过 target.__v_raw 属性来判断 target 是否已经是一个响应式对象</p>
+    <p>如果对同一个原始数据多次执行 reactive ，那么会返回相同的响应式对象</p>
+    <textarea style="width: 500xp;height: 100px;">
+        import { reactive } from 'vue'
+        const original = { foo: 1 }
+        const observed = reactive(original)
+        const observed2 = reactive(original)
+        observed === observed2
+    </textarea>
+    <p>使用 canObserve 函数对 target 对象做一进步限制：</p>
+    <textarea style="width: 500xp;height: 100px;">
+        const canObserve = (value) => {
+            return (!value.__v_skip &&
+             isObservableType(toRawType(value)) &&
+             !Object.isFrozen(value))
+          }
+          const isObservableType = /*#__PURE__*/ makeMap('Object,Array,Map,Set,WeakMap,WeakSet')
+    </textarea>
+    <p>5:通过 Proxy API 劫持 target 对象，把它变成响应式。</p>
+    <p>6.给原始数据打个标识，如下：</p>
+    <textarea style="width: 500px;height: 30px;">
+        target.__v_reactive = observed
+    </textarea>
+    <p>Vue.js 3.0 的 reactive API 就是通过 Proxy 劫持数据，而且由于 Proxy 劫持的是整个对象，所以我们可以检测到任何对对象的修改,弥补了 Object.defineProperty API 的不足。</p>
+    <textarea style="width: 500px;height: 100px;">
+        const mutableHandlers = {
+            get,
+            set,
+            deleteProperty,
+            has,
+            ownKeys
+          }
+    </textarea>
+    <p>访问对象属性会触发 get 函数；</p>
+    <p>设置对象属性会触发 set 函数；</p>
+    <p>删除对象属性会触发 deleteProperty 函数；</p>
+    <p>in 操作符会触发 has 函数；</p>
+    <p>通过 Object.getOwnPropertyNames 访问对象属性名会触发 ownKeys 函数。</p>
+    <h1>依赖收集：get 函数</h1>
+    <p>所以当这个响应式对象属性被访问的时候就会执行 get 函数，</p>
+    <textarea style="width: 500xp;height: 100px;">
+        function createGetter(isReadonly = false) {
+            return function get(target, key, receiver) {
+              if (key === "__v_isReactive" /* isReactive */) {
+                // 代理 observed.__v_isReactive
+                return !isReadonly
+              }else if (key === "__v_isReadonly" /* isReadonly */) {
+                // 代理 observed.__v_isReadonly
+                return isReadonly;
+              }else if (key === "__v_raw" /* raw */) {
+                // 代理 observed.__v_raw
+                return target
+              }
+              const targetIsArray = isArray(target)
+              // arrayInstrumentations 包含对数组一些方法修改的函数
+              if (targetIsArray && hasOwn(arrayInstrumentations, key)) {
+                return Reflect.get(arrayInstrumentations, key, receiver)
+              }
+              // 求值
+              const res = Reflect.get(target, key, receiver)
+              // 内置 Symbol key 不需要依赖收集
+              if (isSymbol(key) && builtInSymbols.has(key) || key === '__proto__') {
+                return res
+              }
+              // 依赖收集
+              !isReadonly && track(target, "get" /* GET */, key)
+              return isObject(res)? isReadonly?      
+                  readonly(res)
+                  // 如果 res 是个对象或者数组类型，则递归执行 reactive 函数把 res 变成响应式
+                  : reactive(res)
+                : res
+          
+            }
+          
+          }
+          
+    </textarea>
+</body>
+
+</html>
